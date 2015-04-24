@@ -1,0 +1,163 @@
+#cover {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.9);
+	z-index: 10;
+}
+
+.infoBox {
+	position: relative;
+	margin: 0 auto;
+	width: 400px;
+	height: 150px;
+	background-color: white;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+  .bubble {
+    position: relative;
+    width: 300px;
+    height: 87px;
+    padding: 0px;
+    background: #FFFFFF;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 2px 10px 0px #000000;
+    -moz-box-shadow: 2px 2px 10px 0px #000000;
+    box-shadow: 2px 2px 10px 0px #000000;
+    z-index: 1000;
+    margin: 0 auto;
+
+}
+
+  .bubble:after {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: -15px;
+    border-style: solid;
+    border-width: 15px 15px 15px 0;
+    border-color: transparent #FFFFFF;
+    display: block;
+    width: 0;
+    z-index: 10000;
+}
+
+#helpBox {
+    position: absolute;
+    top: 0;
+    width: 500px;
+    min-height: 150px;
+    background-color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0 0 3px 3px;
+    display: none;
+}
+
+#helpBox h1 {
+    font-size: 20px;
+    color: #3A86FF;
+}
+
+.helpBtn {
+    height: 50px;
+    width: 50px;
+    background-color: #464646;
+    border: none;
+    outline:none;
+    border-radius: 10px;
+    transition: background-color .3s;
+}
+
+.helpBtn:hover:enabled {
+    background-color: #3A86FF;
+    cursor: pointer;
+}
+
+#nextButton {
+    position: absolute;
+    right: 0;
+    background-image: url(right.svg);
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+
+#nextButton:hover:enabled {
+    animation: slideR .3s;
+}
+
+.helpBtn:active:enabled {
+    background-color: #D4D4D4;
+}
+
+#prevButton:hover:enabled {
+    animation: slideL .3s;
+}
+
+#prevButton {
+    background-image: url(left.svg);
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#closeButton {
+    position: absolute;
+    top: 0;
+    right: 0;      
+    background-color: transparent;
+    background-image: url(sprite-icons.png);
+    background-position: -14px -15px; 
+    width: 23px;
+    height: 23px;
+    border: none;
+    outline:none;
+    cursor:pointer;     
+}
+
+.alert {
+    border: 1px solid red !important;
+}
+
+@keyframes slideR {
+    0% {
+      background-position: center;
+      animation-timing-function: ease-out;
+    }
+    50% {
+      background-position: 150%;
+      animation-timing-function: ease-in;
+    }
+    51% {
+      background-position: -50%;
+      animation-timing-function: ease-in;
+    }
+    100% {
+      background-position: center;
+    }
+}
+
+@keyframes slideL {
+    0% {
+      background-position: center;
+      animation-timing-function: ease-out;
+    }
+    50% {
+      background-position: -50%;
+      animation-timing-function: ease-in;
+    }
+    51% {
+      background-position: 150%;
+      animation-timing-function: ease-in;
+    }
+    100% {
+      background-position: center;
+    }
+}
