@@ -1,5 +1,5 @@
 
-$(document).ready(function() {
+function helpRun() {
 var i = 1;
 
 var cover = document.createElement("div");
@@ -14,28 +14,29 @@ helpBox.setAttribute("id", "helpBox");
 var titleH1 = document.createElement("h1");
 var description = document.createElement("p");
 
-var $conButton = $('<button/>', {
+var $jqconButton = $jq('<button/>', {
 		id: 'conButton',
 		text: 'continue',
 		click: function () {
 			cover.appendChild(helpBox);
-			$(helpBox).toggle( "slow");
+			//$jq(helpBox).toggle( "slow");
 			info.remove();
 			getXml(i);
 			i++;
 		}
 });
 
-var $closeButton = $('<button/>', {
+var $jqcloseButton = $jq('<button/>', {
         id: 'closeButton',
+	text: 'X',
         click: function () { 
-       		$(helpBox).toggle( "slow", function() {
-    			$(cover).fadeOut("slow");
+       		$jq(helpBox).toggle( "slow", function() {
+    			$jq(cover).fadeOut("slow");
   			}); 
     	}
 });
 
-var $nextButton = $('<button/>', {
+var $jqnextButton = $jq('<button/>', {
 		id: 'nextButton',
 		class: 'helpBtn',
 		click: function () {
@@ -44,7 +45,7 @@ var $nextButton = $('<button/>', {
 		}
 });
 
-var $prevButton = $('<button/>', {
+var $jqprevButton = $jq('<button/>', {
 		id: 'prevButton',
 		class: 'helpBtn',
 		click: function () {
@@ -53,40 +54,48 @@ var $prevButton = $('<button/>', {
 		}
 });
 
-$(helpBox).append(titleH1);
-$(helpBox).append(description);
-$(helpBox).append($nextButton);
-$(helpBox).append($prevButton);
-$(helpBox).append($closeButton);
-$(info).append($conButton);
+$jq(helpBox).append(titleH1);
+$jq(helpBox).append(description);
+$jq(helpBox).append($jqnextButton);
+$jq(helpBox).append($jqprevButton);
+$jq(helpBox).append($jqcloseButton);
+$jq(info).append($jqconButton);
 cover.appendChild(info);
 
 document.body.appendChild(cover);
 
 
 function getXml(i) {
-	$.ajax({
-	url:'xml/help.xml',
+	$jq.ajax({
+	url:'/easyminercenter/_help/xml/help.xml',
 	dataType: 'xml',
 	success: function(data) {
-		$(data).find('step').each(function() {
-			$(this).find('id').each(function () {
-				darken($(this).text());
+	$jq(nextButton).removeAttr('disabled');
+	$jq(prevButton).removeAttr('disabled');
+	if (i == 1) {
+		$jq(prevButton).attr('disabled','disabled');
+	}
+		$jq(data).find('step').each(function() {
+			$jq(this).find('id').each(function () {
+				darken($jq(this).text());
 			});
 		});
 
-		$(data).find('step:nth-child('+i+')').each(function() {
-			$(this).find('id').each(function () {
-				hilight($(this).text());
+		$jq(data).find('step:nth-child('+i+')').each(function() {
+			$jq(this).find('id').each(function () {
+				hilight($jq(this).text());
 			});
-			titleH1.innerHTML = "Step " + i + " / " + $(data).find("steps").children().size() + " " + $(this).find('title').text();
-			description.innerHTML =  $(this).find('title').text();
+			titleH1.innerHTML = "Step " + i + " / " + $jq(data).find("steps").children().size() + " " + $jq(this).find('title').text();
+			description.innerHTML =  $jq(this).find('title').text();
 		});
+			if (i == $jq(data).find("steps").children().size()) {
+			$jq(nextButton).attr('disabled','disabled');
+			}
 	},
 	error: function() {
-		$('.timeline').text('Failed to get feed');
+		$jq('.timeline').text('Failed to get feed');
 	}
 });
 }
 
-});
+}
