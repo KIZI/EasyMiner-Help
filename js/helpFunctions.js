@@ -10,5 +10,5 @@ function hilight (id) {
 }
 
 function darken (id) {
-	$jq("#"+id+"").css("z-index", "1");
+	$jq("#"+id+"").css("z-index", "0");
 }
