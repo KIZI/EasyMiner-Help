@@ -11,6 +11,9 @@ info.setAttribute("class", "infoBox");
 var helpBox = document.createElement("div");
 helpBox.setAttribute("id", "helpBox");
 
+var infoText = document.createElement("p");
+infoText.innerHTML = "Welcome to EasyMiner Help Guide."
+
 var titleH1 = document.createElement("h1");
 var description = document.createElement("p");
 
@@ -33,6 +36,7 @@ var $jqcloseButton = $jq('<button/>', {
        		$jq(helpBox).toggle( "slow", function() {
     			$jq(cover).fadeOut("slow");
   			}); 
+       		closeXml();
     	}
 });
 
@@ -59,6 +63,7 @@ $jq(helpBox).append(description);
 $jq(helpBox).append($jqnextButton);
 $jq(helpBox).append($jqprevButton);
 $jq(helpBox).append($jqcloseButton);
+$jq(info).append(infoText);
 $jq(info).append($jqconButton);
 cover.appendChild(info);
 
@@ -91,6 +96,23 @@ function getXml(i) {
 			if (i == $jq(data).find("steps").children().size()) {
 			$jq(nextButton).attr('disabled','disabled');
 			}
+	},
+	error: function() {
+		$jq('.timeline').text('Failed to get feed');
+	}
+});
+}
+
+function closeXml() {
+	$jq.ajax({
+	url:'/easyminercenter/_help/xml/help.xml',
+	dataType: 'xml',
+	success: function(data) {
+		$jq(data).find('step').each(function() {
+			$jq(this).find('id').each(function () {
+				darken($jq(this).text());
+			});
+		});
 	},
 	error: function() {
 		$jq('.timeline').text('Failed to get feed');
