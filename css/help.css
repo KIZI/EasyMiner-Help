@@ -82,7 +82,7 @@
 #nextButton {
     position: absolute;
     right: 0;
-    background-image: url(right.svg);
+    background-image: url(./img/right.svg);
     background-size: 20px 20px;
     background-repeat: no-repeat;
     background-position: center;
@@ -102,7 +102,7 @@
 }
 
 #prevButton {
-    background-image: url(left.svg);
+    background-image: url(./img/left.svg);
     background-size: 20px 20px;
     background-repeat: no-repeat;
     background-position: center;
@@ -113,7 +113,6 @@
     top: 0;
     right: 0;      
     background-color: transparent;
-    background-image: url(sprite-icons.png);
     background-position: -14px -15px; 
     width: 23px;
     height: 23px;

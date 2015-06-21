@@ -91,7 +91,7 @@ function getXml(i) {
 				hilight($jq(this).text());
 			});
 			titleH1.innerHTML = "Step " + i + " / " + $jq(data).find("steps").children().size() + " " + $jq(this).find('title').text();
-			description.innerHTML =  $jq(this).find('title').text();
+			description.innerHTML =  $jq(this).find('text').text();
 		});
 			if (i == $jq(data).find("steps").children().size()) {
 			$jq(nextButton).attr('disabled','disabled');

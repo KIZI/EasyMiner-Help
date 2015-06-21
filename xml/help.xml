@@ -1,15 +1,18 @@
 <steps>
 	<step>
-		<id>attributes</id>
-		<title>Attributes</title>
-	</step>
-	<step>
 		<id>data-fields</id>
 		<id>attributes</id>
+		<title>Attributes preparation</title>
+		<text>Drag any item from Data fields to Attributes, or just simply click on a plus icon next to it.</text>
+	</step>
+	<step>
+		<id>attributes</id>
 		<title>Drag data field</title>
+		<text>Do this...</text>
 	</step>
 	<step>
 		<id>knowledge-base-select</id>
 		<title>Do something with knowledge base</title>
+		<text>Do that ...</text>
 	</step>
 </steps>
