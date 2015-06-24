@@ -1,5 +1,5 @@
 
-function helpRun() {
+function helpRun(file) {
 var i = 1;
 var id = "";
 var cover = document.createElement("div");
@@ -54,7 +54,7 @@ i++;
 
 function getXml(i) {
 	$jq.ajax({
-	url:'/easyminercenter/_help/xml/help.xml',
+	url:'/easyminercenter/_help/xml/'+file+'.xml',
 	dataType: 'xml',
 	success: function(data) {
 	$jq(nextButton).removeAttr('disabled');
@@ -89,7 +89,7 @@ function getXml(i) {
 
 function closeXml() {
 	$jq.ajax({
-	url:'/easyminercenter/_help/xml/help.xml',
+	url:'/easyminercenter/_help/xml/'+file+'.xml',
 	dataType: 'xml',
 	success: function(data) {
 		$jq(data).find('step').each(function() {
