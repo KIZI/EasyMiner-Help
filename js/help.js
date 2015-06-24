@@ -1,33 +1,15 @@
 
 function helpRun() {
 var i = 1;
-
+var id = "";
 var cover = document.createElement("div");
 cover.setAttribute("id", "cover");
-
-var info = document.createElement("div");
-info.setAttribute("class", "infoBox");
 
 var helpBox = document.createElement("div");
 helpBox.setAttribute("id", "helpBox");
 
-var infoText = document.createElement("p");
-infoText.innerHTML = "Welcome to EasyMiner Help Guide."
-
 var titleH1 = document.createElement("h1");
 var description = document.createElement("p");
-
-var $jqconButton = $jq('<button/>', {
-		id: 'conButton',
-		text: 'continue',
-		click: function () {
-			cover.appendChild(helpBox);
-			//$jq(helpBox).toggle( "slow");
-			info.remove();
-			getXml(i);
-			i++;
-		}
-});
 
 var $jqcloseButton = $jq('<button/>', {
         id: 'closeButton',
@@ -63,12 +45,12 @@ $jq(helpBox).append(description);
 $jq(helpBox).append($jqnextButton);
 $jq(helpBox).append($jqprevButton);
 $jq(helpBox).append($jqcloseButton);
-$jq(info).append(infoText);
-$jq(info).append($jqconButton);
-cover.appendChild(info);
 
 document.body.appendChild(cover);
-
+cover.appendChild(helpBox);
+$jq(helpBox).toggle( "slow");
+getXml(i);
+i++;
 
 function getXml(i) {
 	$jq.ajax({
@@ -89,7 +71,9 @@ function getXml(i) {
 		$jq(data).find('step:nth-child('+i+')').each(function() {
 			$jq(this).find('id').each(function () {
 				hilight($jq(this).text());
+				id = $jq(this).text();
 			});
+			$jq("html, body").animate({ scrollTop: $jq("#" + id + "").offset().top-20 }, 1000);
 			titleH1.innerHTML = "Step " + i + " / " + $jq(data).find("steps").children().size() + " " + $jq(this).find('title').text();
 			description.innerHTML =  $jq(this).find('text').text();
 		});
