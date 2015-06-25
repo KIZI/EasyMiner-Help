@@ -26,8 +26,8 @@ var $jqnextButton = $jq('<button/>', {
 		id: 'nextButton',
 		class: 'helpBtn',
 		click: function () {
-			getXml(i);
 			i++;
+			getXml(i);
 		}
 });
 
@@ -35,8 +35,8 @@ var $jqprevButton = $jq('<button/>', {
 		id: 'prevButton',
 		class: 'helpBtn',
 		click: function () {
-			i -= 1;
-			getXml(i-1);
+			i--;
+			getXml(i);
 		}
 });
 
@@ -49,8 +49,8 @@ $jq(helpBox).append($jqcloseButton);
 document.body.appendChild(cover);
 cover.appendChild(helpBox);
 $jq(helpBox).toggle( "slow");
+createNav();
 getXml(i);
-i++;
 
 function getXml(i) {
 	$jq.ajax({
@@ -97,11 +97,61 @@ function closeXml() {
 				darken($jq(this).text());
 			});
 		});
+		$jq("#nav").remove();
 	},
 	error: function() {
 		$jq('.timeline').text('Failed to get feed');
 	}
 });
 }
+
+function createNav () {
+	var nav=document.createElement('ul');
+	nav.setAttribute('id','nav');
+
+	var li=document.createElement('li');
+
+
+	document.body.appendChild(nav);
+	nav.appendChild(li);
+	li.innerHTML = "Navigation";
+
+	var ul = document.createElement('ul');
+	$jq.ajax({
+		url:'/easyminercenter/_help/xml/'+file+'.xml',
+		dataType: 'xml',
+		success: function(data) {
+			var j = 1;
+			$jq(data).find('step').each(function() {
+				var $jqnavli = $jq('<li/>', {
+				class: 'navline',
+				click: function () {
+					i = parseInt($jq(this).html().charAt(0));
+					getXml(i);
+				}
+			});
+				$jqnavli.html(j + " " + $jq(this).find('title').text());
+				$jq(ul).append($jqnavli);
+				j++;
+			});
+		},
+		error: function() {
+			$jq('.timeline').text('Failed to get feed');
+		}
+	});
+	li.appendChild(ul);
+	mainmenu();
+}
+
+
+function mainmenu(){
+	$jq(" #nav ul ").css({display: "none"}); // Opera Fix
+	$jq(" #nav li").hover(function(){
+		$jq(this).find('ul:first').css({visibility: "visible",display: "none"}).show(400);
+		},function(){
+		$jq(this).find('ul:first').css({visibility: "hidden"});
+		});
+}
+
 
 }
