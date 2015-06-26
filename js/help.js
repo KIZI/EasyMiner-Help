@@ -112,7 +112,7 @@ function createNav () {
 	var li=document.createElement('li');
 
 
-	document.body.appendChild(nav);
+	$jq(helpBox).append(nav);
 	nav.appendChild(li);
 	li.innerHTML = "Navigation";
 
@@ -128,6 +128,7 @@ function createNav () {
 				click: function () {
 					i = parseInt($jq(this).html().charAt(0));
 					getXml(i);
+					$jq(ul).css({visibility: "hidden"})
 				}
 			});
 				$jqnavli.html(j + " " + $jq(this).find('title').text());
