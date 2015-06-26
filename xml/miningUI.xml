@@ -2,17 +2,35 @@
 	<step>
 		<id>data-fields</id>
 		<id>attributes</id>
-		<title>Attributes preparation</title>
-		<text>Drag any item from Data fields to Attributes, or just simply click on a plus icon next to it.</text>
+		<title>
+			<en>Attributes preparation</en>
+			<cz>Příprava atributů</cz>
+		</title>
+		<text>
+			<en>Drag any item from Data fields to Attributes, or just simply click on a plus icon next to it.</en>
+			<cz>Přesuň jakoukoliv položku z Data fields do Attributes, nebo klikni na ikonu plusu velde dané položky.</cz>
+		</text>
 	</step>
 	<step>
 		<id>attributes</id>
-		<title>Drag data field</title>
-		<text>Do this...</text>
+		<title>
+			<en>Some title</en>
+			<cz>Nějaký název</cz>
+		</title>
+		<text>
+			<en>Some text</en>
+			<cz>Nějaký text</cz>
+		</text>
 	</step>
 	<step>
 		<id>knowledge-base-select</id>
-		<title>Do something with knowledge base</title>
-		<text>Do that ...</text>
+		<title>
+			<en>Some title</en>
+			<cz>Nějaký název</cz>
+		</title>
+		<text>
+			<en>Some text</en>
+			<cz>Nějaký text</cz>
+		</text>
 	</step>
 </steps>

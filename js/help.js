@@ -1,7 +1,7 @@
 
 function helpRun(file) {
 var i = 1;
-var id = "";
+var lang = 'en';
 var cover = document.createElement("div");
 cover.setAttribute("id", "cover");
 
@@ -74,8 +74,12 @@ function getXml(i) {
 				id = $jq(this).text();
 			});
 			$jq("html, body").animate({ scrollTop: $jq("#" + id + "").offset().top-20 }, 1000);
-			titleH1.innerHTML = "Step " + i + " / " + $jq(data).find("steps").children().size() + " " + $jq(this).find('title').text();
-			description.innerHTML =  $jq(this).find('text').text();
+			$jq(this).find('title').each(function () {
+				titleH1.innerHTML = "Step " + i + " / " + $jq(data).find("steps").children().size() + " " + $jq(this).find(lang).text();
+			});
+			$jq(this).find('text').each(function() {
+				description.innerHTML = $jq(this).find(lang).text();
+			});
 		});
 			if (i == $jq(data).find("steps").children().size()) {
 			$jq(nextButton).attr('disabled','disabled');
@@ -131,7 +135,9 @@ function createNav () {
 					$jq(ul).css({visibility: "hidden"})
 				}
 			});
-				$jqnavli.html(j + " " + $jq(this).find('title').text());
+				$jq(this).find('title').each(function () {
+					$jqnavli.html(j + " " + $jq(this).find(lang).text());
+				});
 				$jq(ul).append($jqnavli);
 				j++;
 			});
