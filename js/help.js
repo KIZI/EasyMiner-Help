@@ -2,21 +2,18 @@
 function helpRun(file) {
 var i = 1;
 var lang = 'en';
-var cover = document.createElement("div");
-cover.setAttribute("id", "cover");
 
-var helpBox = document.createElement("div");
-helpBox.setAttribute("id", "helpBox");
-
-var titleH1 = document.createElement("h1");
-var description = document.createElement("p");
+var $jqcover = $jq("<div id='cover'/>");
+var $jqhelpBox = $jq("<div id='helpBox'/>");
+var $jqtitle = $jq("<h1/>");
+var $jqdescription = $jq("<p/>");
 
 var $jqcloseButton = $jq('<button/>', {
         id: 'closeButton',
 	text: 'X',
         click: function () { 
        		$jq(helpBox).toggle( "slow", function() {
-    			$jq(cover).fadeOut("slow");
+    			$jqcover.fadeOut("slow");
   			}); 
        		closeXml();
     	}
@@ -40,15 +37,15 @@ var $jqprevButton = $jq('<button/>', {
 		}
 });
 
-$jq(helpBox).append(titleH1);
-$jq(helpBox).append(description);
-$jq(helpBox).append($jqnextButton);
-$jq(helpBox).append($jqprevButton);
-$jq(helpBox).append($jqcloseButton);
+$jqhelpBox.append($jqtitle);
+$jqhelpBox.append($jqdescription);
+$jqhelpBox.append($jqnextButton);
+$jqhelpBox.append($jqprevButton);
+$jqhelpBox.append($jqcloseButton);
 
-document.body.appendChild(cover);
-cover.appendChild(helpBox);
-$jq(helpBox).toggle( "slow");
+$jq(document.body).append($jqcover);
+$jqcover.append($jqhelpBox);
+$jqhelpBox.toggle("slow");
 createNav();
 getXml(i);
 
@@ -75,10 +72,10 @@ function getXml(i) {
 			});
 			$jq("html, body").animate({ scrollTop: $jq("#" + id + "").offset().top-20 }, 1000);
 			$jq(this).find('title').each(function () {
-				titleH1.innerHTML = "Step " + i + " / " + $jq(data).find("steps").children().size() + " " + $jq(this).find(lang).text();
+				$jqtitle.html("Step " + i + " / " + $jq(data).find("steps").children().size() + " " + $jq(this).find(lang).text());
 			});
 			$jq(this).find('text').each(function() {
-				description.innerHTML = $jq(this).find(lang).text();
+				$jqdescription.html($jq(this).find(lang).text());
 			});
 		});
 			if (i == $jq(data).find("steps").children().size()) {
@@ -110,17 +107,12 @@ function closeXml() {
 }
 
 function createNav () {
-	var nav=document.createElement('ul');
-	nav.setAttribute('id','nav');
-
-	var li=document.createElement('li');
-
-
-	$jq(helpBox).append(nav);
-	nav.appendChild(li);
-	li.innerHTML = "Navigation";
-
-	var ul = document.createElement('ul');
+	var $jqnav = $jq("<ul id='nav'/>");
+	var $jqli = $jq('<li/>');
+	$jqhelpBox.append($jqnav);
+	$jqnav.append($jqli);
+	$jqli.html("Navigation");
+	var $jqul = $jq('<ul/>');
 	$jq.ajax({
 		url:'/easyminercenter/_help/xml/'+file+'.xml',
 		dataType: 'xml',
@@ -132,13 +124,13 @@ function createNav () {
 				click: function () {
 					i = parseInt($jq(this).html().charAt(0));
 					getXml(i);
-					$jq(ul).css({visibility: "hidden"})
+					$jqul.css({visibility: "hidden"})
 				}
 			});
 				$jq(this).find('title').each(function () {
 					$jqnavli.html(j + " " + $jq(this).find(lang).text());
 				});
-				$jq(ul).append($jqnavli);
+				$jqul.append($jqnavli);
 				j++;
 			});
 		},
@@ -146,7 +138,7 @@ function createNav () {
 			$jq('.timeline').text('Failed to get feed');
 		}
 	});
-	li.appendChild(ul);
+	$jqli.append($jqul);
 	mainmenu();
 }
 
