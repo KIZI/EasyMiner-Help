@@ -21,6 +21,7 @@
 			<en>Some text</en>
 			<cz>Nějaký text</cz>
 		</text>
+		<video>http://techslides.com/demos/sample-videos/small.mp4</video>
 	</step>
 	<step>
 		<id>knowledge-base-select</id>

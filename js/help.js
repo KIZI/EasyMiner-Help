@@ -7,6 +7,7 @@ var $jqcover = $jq("<div id='cover'/>");
 var $jqhelpBox = $jq("<div id='helpBox'/>");
 var $jqtitle = $jq("<h1/>");
 var $jqdescription = $jq("<p/>");
+var $jqcontent = $jq("<div id='content'/>");
 
 var $jqcloseButton = $jq('<button/>', {
         id: 'closeButton',
@@ -37,8 +38,11 @@ var $jqprevButton = $jq('<button/>', {
 		}
 });
 
+$jqhelpBox.mousedown(draggable);
+
 $jqhelpBox.append($jqtitle);
 $jqhelpBox.append($jqdescription);
+$jqhelpBox.append($jqcontent);
 $jqhelpBox.append($jqnextButton);
 $jqhelpBox.append($jqprevButton);
 $jqhelpBox.append($jqcloseButton);
@@ -54,6 +58,7 @@ function getXml(i) {
 	url:'/easyminercenter/_help/xml/'+file+'.xml',
 	dataType: 'xml',
 	success: function(data) {
+	$jq("#video").remove();
 	$jq(nextButton).removeAttr('disabled');
 	$jq(prevButton).removeAttr('disabled');
 	if (i == 1) {
@@ -67,7 +72,7 @@ function getXml(i) {
 
 		$jq(data).find('step:nth-child('+i+')').each(function() {
 			$jq(this).find('id').each(function () {
-				hilight($jq(this).text());
+				highlight($jq(this).text());
 				id = $jq(this).text();
 			});
 			$jq("html, body").animate({ scrollTop: $jq("#" + id + "").offset().top-20 }, 1000);
@@ -76,6 +81,10 @@ function getXml(i) {
 			});
 			$jq(this).find('text').each(function() {
 				$jqdescription.html($jq(this).find(lang).text());
+			});
+			$jq(this).find('video').each(function () {
+				$jqcontent.append($jq("<video id='video' width='320' height='240' controls/>"));
+				$jq("#video").attr('src', $jq(this).text());
 			});
 		});
 			if (i == $jq(data).find("steps").children().size()) {

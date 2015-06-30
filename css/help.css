@@ -209,3 +209,14 @@
   cursor: pointer;
   color: white;
 }
+
+#content {
+  position: relative;
+  width: 100%;
+}
+
+#video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
