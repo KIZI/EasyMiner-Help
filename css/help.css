@@ -15,7 +15,7 @@
     background-color: white;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 10px;
+    border-radius: 0 10px 10px 0;
 	display: none;
 }
 
@@ -134,34 +134,39 @@
      list-style-type:none;
      list-style-position:outside;
      position: absolute;
-     right: 30px;
+     left: -200px;
+     min-height: 100%;
      top: 0;
+     border-radius: 10px 0 0 10px;
      
  }
 
  #helpNav {
-  background-color: #3A86FF;
-  color: white;
+  background-color: white;
+  color: black;
  }
 
  #helpNav ul {
     position:absolute;
-    display:none;
-    top: 100%;
+    display: block;
     left: 0;
     width: 200px;
     overflow-y : scroll;
-    max-height: 200px;
-    background-color: #858585;
+    background-color: white;
   }
-
-#helpNav:hover {
-    cursor: pointer;
-}
+  #helpNav ul li p {
+    font-size: 15px;
+    margin: 0;
+    padding-left: 5px;
+  }
+  #helpNav ul #helpNavTitle{
+    background-color: #3A86FF; 
+    color: white;
+  }
 
 .helpNavline {
     color: black;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
 }
 
 .helpNavline:hover {

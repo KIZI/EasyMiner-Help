@@ -117,11 +117,11 @@ function closeXml() {
 
 function createNav () {
 	var $jqnav = $jq("<ul id='helpNav'/>");
-	var $jqli = $jq('<li/>');
-	$jqhelpBox.append($jqnav);
-	$jqnav.append($jqli);
-	$jqli.html("Navigation");
+	var $jqli = $jq("<li id='helpNavTitle'/>");
 	var $jqul = $jq('<ul/>');
+	$jqhelpBox.append($jqnav);
+	$jqul.append($jqli);
+	$jqli.html("<p>Navigation</p>");
 	$jq.ajax({
 		url:'/easyminercenter/_help/xml/'+file+'.xml',
 		dataType: 'xml',
@@ -131,13 +131,12 @@ function createNav () {
 				var $jqnavli = $jq('<li/>', {
 				class: 'helpNavline',
 				click: function () {
-					i = parseInt($jq(this).html().charAt(0));
+					i = parseInt($jq(this).html().charAt(3));
 					getXml(i);
-					$jqul.css({visibility: "hidden"})
 				}
 			});
 				$jq(this).find('title').each(function () {
-					$jqnavli.html(j + " " + $jq(this).find(lang).text());
+					$jqnavli.html("<p>" + j + " " + $jq(this).find(lang).text() + "</p>");
 				});
 				$jqul.append($jqnavli);
 				j++;
@@ -147,19 +146,6 @@ function createNav () {
 			$jq('.timeline').text('Failed to get feed');
 		}
 	});
-	$jqli.append($jqul);
-	mainmenu();
+	$jqnav.append($jqul);
 }
-
-
-function mainmenu(){
-	$jq(" #helpNav ul ").css({display: "none"}); // Opera Fix
-	$jq(" #helpNav li").hover(function(){
-		$jq(this).find('ul:first').css({visibility: "visible",display: "none"}).show(400);
-		},function(){
-		$jq(this).find('ul:first').css({visibility: "hidden"});
-		});
-}
-
-
 }
