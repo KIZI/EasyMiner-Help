@@ -3,14 +3,14 @@ function helpRun(file) {
 var i = 1;
 var lang = 'en';
 
-var $jqcover = $jq("<div id='cover'/>");
+var $jqcover = $jq("<div id='helpCover'/>");
 var $jqhelpBox = $jq("<div id='helpBox'/>");
 var $jqtitle = $jq("<h1/>");
 var $jqdescription = $jq("<p/>");
-var $jqcontent = $jq("<div id='content'/>");
+var $jqcontent = $jq("<div id='helpContent'/>");
 
 var $jqcloseButton = $jq('<button/>', {
-        id: 'closeButton',
+        id: 'helpCloseButton',
 	text: 'X',
         click: function () { 
        		$jq(helpBox).toggle( "slow", function() {
@@ -21,7 +21,7 @@ var $jqcloseButton = $jq('<button/>', {
 });
 
 var $jqnextButton = $jq('<button/>', {
-		id: 'nextButton',
+		id: 'helpNextButton',
 		class: 'helpBtn',
 		click: function () {
 			i++;
@@ -30,7 +30,7 @@ var $jqnextButton = $jq('<button/>', {
 });
 
 var $jqprevButton = $jq('<button/>', {
-		id: 'prevButton',
+		id: 'helpPrevButton',
 		class: 'helpBtn',
 		click: function () {
 			i--;
@@ -58,11 +58,11 @@ function getXml(i) {
 	url:'/easyminercenter/_help/xml/'+file+'.xml',
 	dataType: 'xml',
 	success: function(data) {
-	$jq("#video").remove();
-	$jq(nextButton).removeAttr('disabled');
-	$jq(prevButton).removeAttr('disabled');
+	$jq("#helpVideo").remove();
+	$jqnextButton.removeAttr('disabled');
+	$jqprevButton.removeAttr('disabled');
 	if (i == 1) {
-		$jq(prevButton).attr('disabled','disabled');
+		$jqprevButton.attr('disabled','disabled');
 	}
 		$jq(data).find('step').each(function() {
 			$jq(this).find('id').each(function () {
@@ -83,12 +83,12 @@ function getXml(i) {
 				$jqdescription.html($jq(this).find(lang).text());
 			});
 			$jq(this).find('video').each(function () {
-				$jqcontent.append($jq("<video id='video' width='320' height='240' controls/>"));
-				$jq("#video").attr('src', $jq(this).text());
+				$jqcontent.append($jq("<video id='helpVideo' width='320' height='240' controls/>"));
+				$jq("#helpVideo").attr('src', $jq(this).text());
 			});
 		});
 			if (i == $jq(data).find("steps").children().size()) {
-			$jq(nextButton).attr('disabled','disabled');
+			$jqnextButton.attr('disabled','disabled');
 			}
 	},
 	error: function() {
@@ -107,7 +107,7 @@ function closeXml() {
 				darken($jq(this).text());
 			});
 		});
-		$jq("#nav").remove();
+		$jq("#helpNav").remove();
 	},
 	error: function() {
 		$jq('.timeline').text('Failed to get feed');
@@ -116,7 +116,7 @@ function closeXml() {
 }
 
 function createNav () {
-	var $jqnav = $jq("<ul id='nav'/>");
+	var $jqnav = $jq("<ul id='helpNav'/>");
 	var $jqli = $jq('<li/>');
 	$jqhelpBox.append($jqnav);
 	$jqnav.append($jqli);
@@ -129,7 +129,7 @@ function createNav () {
 			var j = 1;
 			$jq(data).find('step').each(function() {
 				var $jqnavli = $jq('<li/>', {
-				class: 'navline',
+				class: 'helpNavline',
 				click: function () {
 					i = parseInt($jq(this).html().charAt(0));
 					getXml(i);
@@ -153,8 +153,8 @@ function createNav () {
 
 
 function mainmenu(){
-	$jq(" #nav ul ").css({display: "none"}); // Opera Fix
-	$jq(" #nav li").hover(function(){
+	$jq(" #helpNav ul ").css({display: "none"}); // Opera Fix
+	$jq(" #helpNav li").hover(function(){
 		$jq(this).find('ul:first').css({visibility: "visible",display: "none"}).show(400);
 		},function(){
 		$jq(this).find('ul:first').css({visibility: "hidden"});

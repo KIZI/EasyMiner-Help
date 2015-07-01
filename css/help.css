@@ -1,50 +1,10 @@
-#cover {
+#helpCover {
 	position: fixed;
 	top: 0;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0,0,0,0.9);
 	z-index: 10;
-}
-
-.infoBox {
-	position: relative;
-	margin: 0 auto;
-	width: 400px;
-	height: 150px;
-	background-color: white;
-	top: 50%;
-	transform: translateY(-50%);
-}
-
-  .bubble {
-    position: relative;
-    width: 300px;
-    height: 87px;
-    padding: 0px;
-    background: #FFFFFF;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: 2px 2px 10px 0px #000000;
-    -moz-box-shadow: 2px 2px 10px 0px #000000;
-    box-shadow: 2px 2px 10px 0px #000000;
-    z-index: 1000;
-    margin: 0 auto;
-
-}
-
-  .bubble:after {
-    content: "";
-    position: absolute;
-    top: 28px;
-    left: -15px;
-    border-style: solid;
-    border-width: 15px 15px 15px 0;
-    border-color: transparent #FFFFFF;
-    display: block;
-    width: 0;
-    z-index: 10000;
 }
 
 #helpBox {
@@ -85,7 +45,7 @@
     cursor: pointer;
 }
 
-#nextButton {
+#helpNextButton {
     position: absolute;
     right: 0;
     background-image: url(/easyminercenter/_help/img/right.svg);
@@ -95,7 +55,7 @@
     
 }
 
-#nextButton:hover:enabled {
+#helpNextButton:hover:enabled {
     animation: slideR .3s;
 }
 
@@ -103,18 +63,18 @@
     background-color: #D4D4D4;
 }
 
-#prevButton:hover:enabled {
+#helpPrevButton:hover:enabled {
     animation: slideL .3s;
 }
 
-#prevButton {
+#helpPrevButton {
     background-image: url(/easyminercenter/_help/img/left.svg);
     background-size: 20px 20px;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-#closeButton {
+#helpCloseButton {
     position: absolute;
     top: 0;
     right: 0;      
@@ -168,7 +128,7 @@
 }
 
 
-#nav, #nav ul{
+#helpNav, #helpNav ul{
      margin:0;
      padding:0;
      list-style-type:none;
@@ -179,12 +139,12 @@
      
  }
 
- #nav {
+ #helpNav {
   background-color: #3A86FF;
   color: white;
  }
 
- #nav ul {
+ #helpNav ul {
     position:absolute;
     display:none;
     top: 100%;
@@ -195,27 +155,27 @@
     background-color: #858585;
   }
 
-#nav:hover {
+#helpNav:hover {
     cursor: pointer;
 }
 
-.navline {
+.helpNavline {
     color: black;
     border-bottom: 1px solid white;
 }
 
-.navline:hover {
+.helpNavline:hover {
   background-color: #3A86FF;
   cursor: pointer;
   color: white;
 }
 
-#content {
+#helpContent {
   position: relative;
   width: 100%;
 }
 
-#video {
+#helpVideo {
   display: block;
   margin-left: auto;
   margin-right: auto;
