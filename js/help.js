@@ -1,6 +1,4 @@
-
 function helpRun(file) {
-var i = 1;
 var lang = 'en';
 
 var $jqcover = $jq("<div id='helpCover'/>");
@@ -13,10 +11,10 @@ var $jqcloseButton = $jq('<button/>', {
         id: 'helpCloseButton',
 	text: 'X',
         click: function () { 
-       		$jq(helpBox).toggle( "slow", function() {
-    			$jqcover.fadeOut("slow");
+       		$jqcover.fadeOut( "fast", function() {
+    			$jqcover.remove();
   			}); 
-       		closeXml();
+  			closeXml();	
     	}
 });
 
@@ -49,9 +47,21 @@ $jqhelpBox.append($jqcloseButton);
 
 $jq(document.body).append($jqcover);
 $jqcover.append($jqhelpBox);
-$jqhelpBox.toggle("slow");
+$jqhelpBox.fadeToggle("slow");
 createNav();
+if (i < 1) {
+	i = 1;
+}
 getXml(i);
+
+$jq(document).keyup(function(e) {
+     if (e.keyCode == 27) { 
+        $jqcover.fadeOut( "fast", function() {
+    			$jqcover.remove();
+  			}); 
+  			closeXml();	
+    }
+});
 
 function getXml(i) {
 	$jq.ajax({
@@ -119,7 +129,7 @@ function createNav () {
 	var $jqnav = $jq("<ul id='helpNav'/>");
 	var $jqli = $jq("<li id='helpNavTitle'/>");
 	var $jqul = $jq('<ul/>');
-	$jqhelpBox.append($jqnav);
+	$jqcover.append($jqnav);
 	$jqul.append($jqli);
 	$jqli.html("<p>Navigation</p>");
 	$jq.ajax({
