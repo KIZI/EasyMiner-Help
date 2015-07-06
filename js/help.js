@@ -1,6 +1,7 @@
 function helpRun(file) {
 var lang = 'en';
-
+var q = 0;
+var num = 1;
 var $jqcover = $jq("<div id='helpCover'/>");
 var $jqhelpBox = $jq("<div id='helpBox'/>");
 var $jqtitle = $jq("<h1/>");
@@ -22,8 +23,8 @@ var $jqnextButton = $jq('<button/>', {
 		id: 'helpNextButton',
 		class: 'helpBtn',
 		click: function () {
-			i++;
-			getXml(i);
+			num++;
+			getXml(num);
 		}
 });
 
@@ -31,8 +32,8 @@ var $jqprevButton = $jq('<button/>', {
 		id: 'helpPrevButton',
 		class: 'helpBtn',
 		click: function () {
-			i--;
-			getXml(i);
+			num--;
+			getXml(num);
 		}
 });
 
@@ -49,10 +50,7 @@ $jq(document.body).append($jqcover);
 $jqcover.append($jqhelpBox);
 $jqhelpBox.fadeToggle("slow");
 createNav();
-if (i < 1) {
-	i = 1;
-}
-getXml(i);
+getXml(num);
 
 $jq(document).keyup(function(e) {
      if (e.keyCode == 27) { 
@@ -71,7 +69,17 @@ function getXml(i) {
 	$jq("#helpVideo").remove();
 	$jqnextButton.removeAttr('disabled');
 	$jqprevButton.removeAttr('disabled');
-	if (i == 1) {
+	if (i > $jq(data).find('steps').eq(q).children().size()) {
+		q++;
+		i = 1;
+		num = 1;
+	}
+	if (i == 0) {
+		q--;
+		i = $jq(data).find('steps').eq(q).children().size();
+		num = $jq(data).find('steps').eq(q).children().size();
+	}
+	if (i == 1 && q == 0) {
 		$jqprevButton.attr('disabled','disabled');
 	}
 		$jq(data).find('step').each(function() {
@@ -79,27 +87,26 @@ function getXml(i) {
 				darken($jq(this).text());
 			});
 		});
-
-		$jq(data).find('step:nth-child('+i+')').each(function() {
-			$jq(this).find('id').each(function () {
-				highlight($jq(this).text());
-				id = $jq(this).text();
-			});
-			$jq("html, body").animate({ scrollTop: $jq("#" + id + "").offset().top-20 }, 1000);
-			$jq(this).find('title').each(function () {
-				$jqtitle.html("Step " + i + " / " + $jq(data).find("steps").children().size() + " " + $jq(this).find(lang).text());
-			});
-			$jq(this).find('text').each(function() {
-				$jqdescription.html($jq(this).find(lang).text());
-			});
-			$jq(this).find('video').each(function () {
-				$jqcontent.append($jq("<video id='helpVideo' width='320' height='240' controls/>"));
-				$jq("#helpVideo").attr('src', $jq(this).text());
+		$jq(data).find('steps').eq(q).each(function() {
+			$jq(this).find('step:nth-child('+i+')').each(function() {
+				$jq(this).find('id').each(function () {
+					highlight($jq(this).text());
+					id = $jq(this).text();
+				});
+				$jq("html, body").animate({ scrollTop: $jq("#" + id + "").offset().top-20 }, 1000);
+				$jqtitle.html($jq(data).find('section').eq(q).text() + " step " + i + " / " + $jq(data).find('steps').eq(q).children().size() + " " + $jq(this).find('title').find(lang).text());
+				$jq(this).find('text').each(function() {
+					$jqdescription.html($jq(this).find(lang).text());
+				});
+				$jq(this).find('video').each(function () {
+					$jqcontent.append($jq("<video id='helpVideo' width='320' height='240' controls/>"));
+					$jq("#helpVideo").attr('src', $jq(this).text());
+				});
 			});
 		});
-			if (i == $jq(data).find("steps").children().size()) {
+		if (i == $jq(data).find('steps').eq(q).children().size() && q == $jq(data).find('steps').size() - 1) {
 			$jqnextButton.attr('disabled','disabled');
-			}
+		}
 	},
 	error: function() {
 		$jq('.timeline').text('Failed to get feed');
@@ -136,21 +143,32 @@ function createNav () {
 		url:'/easyminercenter/_help/xml/'+file+'.xml',
 		dataType: 'xml',
 		success: function(data) {
-			var j = 1;
-			$jq(data).find('step').each(function() {
+			p = 0;	
+			$jq(data).find('section').each(function() {
 				var $jqnavli = $jq('<li/>', {
-				class: 'helpNavline',
-				click: function () {
-					i = parseInt($jq(this).html().charAt(3));
-					getXml(i);
-				}
-			});
-				$jq(this).find('title').each(function () {
-					$jqnavli.html("<p>" + j + " " + $jq(this).find(lang).text() + "</p>");
+				class: 'helpNavlist',
 				});
+				$jqnavli.html("<p>" + $jq(this).text() + "</p>");
 				$jqul.append($jqnavli);
-				j++;
-			});
+				$jq(data).find('steps').eq(p).each(function() {
+					j = 1;
+					$jq(this).find('step').each(function () {
+						var $jqnavli2 = $jq('<li/>', {
+						class: 'helpNavline',
+						click: function () {
+							q = parseInt($jq(this).html().charAt(3)) - 1;
+							num = parseInt($jq(this).html().charAt(5));
+							getXml(num);
+						}
+						});
+						$jqnavli2.html("<p>" + (p+1) + "." + j + " " + $jq(this).find('title').find(lang).text() + "</p>");
+						$jqul.append($jqnavli2);
+						j++;
+					});
+				});
+				p++;
+			});		
+			
 		},
 		error: function() {
 			$jq('.timeline').text('Failed to get feed');

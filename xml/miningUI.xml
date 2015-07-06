@@ -1,37 +1,65 @@
-<steps>
-	<step>
-		<id>data-fields</id>
-		<id>attributes</id>
-		<title>
-			<en>Attributes preparation</en>
-			<cz>Příprava atributů</cz>
-		</title>
-		<text>
-			<en>Drag any item from Data fields to Attributes, or just simply click on a plus icon next to it.</en>
-			<cz>Přesuň jakoukoliv položku z Data fields do Attributes, nebo klikni na ikonu plusu velde dané položky.</cz>
-		</text>
-	</step>
-	<step>
-		<id>attributes</id>
-		<title>
-			<en>Some title</en>
-			<cz>Nějaký název</cz>
-		</title>
-		<text>
-			<en>Some text</en>
-			<cz>Nějaký text</cz>
-		</text>
-		<video>http://techslides.com/demos/sample-videos/small.mp4</video>
-	</step>
-	<step>
-		<id>knowledge-base-select</id>
-		<title>
-			<en>Some title</en>
-			<cz>Nějaký název</cz>
-		</title>
-		<text>
-			<en>Some text</en>
-			<cz>Nějaký text</cz>
-		</text>
-	</step>
-</steps>
+<help>
+	<section>Preparation</section>
+	<steps>
+		<step>
+			<id>data-fields</id>
+			<id>attributes</id>
+			<title>
+				<en>Attributes</en>
+				<cz>Atributy</cz>
+			</title>
+			<text>
+				<en>Drag any item from Data fields to Attributes, or just simply click on a plus icon next to it.</en>
+				<cz>Přesuň jakoukoliv položku z Data fields do Attributes, nebo klikni na ikonu plusu velde dané položky.</cz>
+			</text>
+		</step>
+		<step>
+			<id>attributes</id>
+			<title>
+				<en>Some title</en>
+				<cz>Nějaký název</cz>
+			</title>
+			<text>
+				<en>Some text</en>
+				<cz>Nějaký text</cz>
+			</text>
+			<video>http://techslides.com/demos/sample-videos/small.mp4</video>
+		</step>
+		<step>
+			<id>knowledge-base-select</id>
+			<title>
+				<en>Some title</en>
+				<cz>Nějaký název</cz>
+			</title>
+			<text>
+				<en>Some text</en>
+				<cz>Nějaký text</cz>
+			</text>
+		</step>
+	</steps>
+	<section>Mining</section>
+	<steps>
+		<step>
+			<id>knowledge-base-select</id>
+			<title>
+				<en>Some title</en>
+				<cz>Nějaký název</cz>
+			</title>
+			<text>
+				<en>Some text</en>
+				<cz>Nějaký text</cz>
+			</text>
+		</step>
+		<step>
+			<id>attributes</id>
+			<title>
+				<en>Some title</en>
+				<cz>Nějaký název</cz>
+			</title>
+			<text>
+				<en>Some text</en>
+				<cz>Nějaký text</cz>
+			</text>
+		</step>
+	</steps>
+</help>
