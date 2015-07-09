@@ -94,7 +94,7 @@ function getXml(i) {
 					id = $jq(this).text();
 				});
 				$jq("html, body").animate({ scrollTop: $jq("#" + id + "").offset().top-20 }, 1000);
-				$jqtitle.html($jq(data).find('section').eq(q).text() + " step " + i + " / " + $jq(data).find('steps').eq(q).children().size() + " " + $jq(this).find('title').find(lang).text());
+				$jqtitle.html($jq(data).find('section').eq(q).text() + " step " + i + " / " + $jq(data).find('steps').eq(q).children().size() + "<br />" + $jq(this).find('title').find(lang).text());
 				$jq(this).find('text').each(function() {
 					$jqdescription.html($jq(this).find(lang).text());
 				});
@@ -107,6 +107,12 @@ function getXml(i) {
 		if (i == $jq(data).find('steps').eq(q).children().size() && q == $jq(data).find('steps').size() - 1) {
 			$jqnextButton.attr('disabled','disabled');
 		}
+		$jq(".helpNavline").each(function () {
+			$jq(this).removeClass('currentNavline');
+			if(num == parseInt($jq(this).html().charAt(5)) && q == parseInt($jq(this).html().charAt(3)) - 1) {
+				$jq(this).addClass('currentNavline');
+			}
+		});
 	},
 	error: function() {
 		$jq('.timeline').text('Failed to get feed');
@@ -162,6 +168,9 @@ function createNav () {
 						}
 						});
 						$jqnavli2.html("<p>" + (p+1) + "." + j + " " + $jq(this).find('title').find(lang).text() + "</p>");
+						if (p == q && j == num) {
+							$jqnavli2.addClass('currentNavline');
+						}
 						$jqul.append($jqnavli2);
 						j++;
 					});

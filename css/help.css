@@ -90,7 +90,6 @@
   left: 0;
   min-height: 400px;
   top: 0;
-  background-color: #fff;
   border: none;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
   -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
@@ -132,9 +131,16 @@
   cursor: pointer;
   color: #fff;
 }
-#helpCover .helpNavlist {
+#helpCover .currentNavline {
   background-color: #3a86ff;
   color: #fff;
+}
+#helpCover .helpNavlist {
+  margin-bottom: 5px;
+}
+#helpCover .helpNavlist p {
+  color: #3a86ff;
+  margin: 5px 20px 15px 20px;
 }
 #helpCover #helpContent {
   position: relative;

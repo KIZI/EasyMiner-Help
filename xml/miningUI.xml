@@ -5,25 +5,24 @@
 			<id>data-fields</id>
 			<id>attributes</id>
 			<title>
-				<en>Attributes</en>
-				<cz>Atributy</cz>
+				<en>Creating attributes</en>
+				<cz>Vytvoření atributů</cz>
 			</title>
 			<text>
-				<en>Drag any item from Data fields to Attributes, or just simply click on a plus icon next to it.</en>
-				<cz>Přesuň jakoukoliv položku z Data fields do Attributes, nebo klikni na ikonu plusu velde dané položky.</cz>
+				<en>To create new attribute, drag any item from Data fields to Attributes or just simply click a plus icon next to it. A configuration window will appear.</en>
+				<cz>K vytvoření nového atributu přesuňte jakoukoliv položku z Data fields do Attributes, nebo klikněte na ikonu plusu velde dané položky. Objeví se konfigurační okno.</cz>
 			</text>
 		</step>
 		<step>
 			<id>attributes</id>
 			<title>
-				<en>Some title</en>
-				<cz>Nějaký název</cz>
+				<en>Editing attributes</en>
+				<cz>Úprava atributů</cz>
 			</title>
 			<text>
-				<en>Some text</en>
-				<cz>Nějaký text</cz>
+				<en>An attribute cannot be edited after you create it. You can remove it by clicking a cross icon next to it and create a new one if you need to.</en>
+				<cz>Atribut nelze upravovat po jeho vytvoření. Můžete ho odstranit kliknutím na ikonu křížku a vytvořit pak nový, pokud potřebujete.</cz>
 			</text>
-			<video>http://techslides.com/demos/sample-videos/small.mp4</video>
 		</step>
 		<step>
 			<id>knowledge-base-select</id>
