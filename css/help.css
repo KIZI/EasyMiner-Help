@@ -1,13 +1,5 @@
-#helpCover {
+#helpBox {
   position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.9);
-  z-index: 10;
-}
-#helpCover #helpBox {
-  position: absolute;
   top: 20px;
   width: 500px;
   min-height: 150px;
@@ -15,23 +7,24 @@
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.6);
+  z-index: 12;
   display: none;
 }
-#helpCover #helpBox h1 {
+#helpBox h1 {
   font-family: 'Droid Sans', 'Arial', 'sans-serif';
   font-size: 20px;
   color: #3a86ff;
   padding-top: 10px;
   padding-left: 10px;
 }
-#helpCover #helpBox p {
+#helpBox p {
   padding-left: 10px;
   font-family: 'Droid Sans', 'Arial', 'sans-serif';
 }
-#helpCover #helpBox:hover {
+#helpBox:hover {
   cursor: move;
 }
-#helpCover .helpBtn {
+#helpBox .helpBtn {
   height: 50px;
   width: 50px;
   background-color: #464646;
@@ -39,14 +32,14 @@
   outline: none;
   transition: background-color 0.3s;
 }
-#helpCover .helpBtn:hover:enabled {
+#helpBox .helpBtn:hover:enabled {
   background-color: #3a86ff;
   cursor: pointer;
 }
-#helpCover .helpBtn:active:enabled {
+#helpBox .helpBtn:active:enabled {
   background-color: #d4d4d4;
 }
-#helpCover #helpNextButton {
+#helpBox #helpNextButton {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -55,10 +48,10 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-#helpCover #helpNextButton:hover:enabled {
+#helpBox #helpNextButton:hover:enabled {
   animation: slideR 0.3s;
 }
-#helpCover #helpPrevButton {
+#helpBox #helpPrevButton {
   position: absolute;
   background-image: url("/easyminercenter/_help/img/left.svg");
   background-size: 20px 20px;
@@ -67,10 +60,10 @@
   bottom: 0;
   left: 0;
 }
-#helpCover #helpPrevButton:hover:enabled {
+#helpBox #helpPrevButton:hover:enabled {
   animation: slideL 0.3s;
 }
-#helpCover #helpCloseButton {
+#helpBox #helpCloseButton {
   position: absolute;
   top: 0;
   right: 0;
@@ -80,74 +73,12 @@
   outline: none;
   cursor: pointer;
 }
-#helpCover #helpNav,
-#helpCover #helpNav ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  list-style-position: outside;
-  position: absolute;
-  left: 0;
-  min-height: 400px;
-  top: 0;
-  border: none;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
-  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
-  -moz-box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
-}
-#helpCover #helpNav {
-  color: #000;
-}
-#helpCover #helpNav ul {
-  position: absolute;
-  display: block;
-  left: 0;
-  width: 200px;
-  overflow-y: scroll;
-  background-color: #fff;
-}
-#helpCover #helpNav ul li p {
-  margin: 0;
-  padding: 0;
-  line-height: 20px;
-  font-size: 15px;
-  font-weight: normal;
-  margin-left: 20px;
-}
-#helpCover #helpNav ul #helpNavTitle p {
-  color: #314e64;
-  font-family: 'Droid Sans', 'Arial', 'sans-serif';
-  font-size: 20px;
-  font-weight: normal;
-  margin: 5px 20px 15px 20px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #314e64;
-}
-#helpCover .helpNavline {
-  color: #000;
-}
-#helpCover .helpNavline:hover {
-  background-color: #3a86ff;
-  cursor: pointer;
-  color: #fff;
-}
-#helpCover .currentNavline {
-  background-color: #3a86ff;
-  color: #fff;
-}
-#helpCover .helpNavlist {
-  margin-bottom: 5px;
-}
-#helpCover .helpNavlist p {
-  color: #3a86ff;
-  margin: 5px 20px 15px 20px;
-}
-#helpCover #helpContent {
+#helpBox #helpContent {
   position: relative;
   width: 100%;
   margin-bottom: 60px;
 }
-#helpCover #helpVideo {
+#helpBox #helpVideo {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -287,4 +218,74 @@
   100% {
     background-position: center;
   }
+}
+#helpCover {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+  z-index: 10;
+}
+#helpCover #helpNav,
+#helpCover #helpNav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style-position: outside;
+  position: absolute;
+  left: 0;
+  min-height: 400px;
+  top: 0;
+  border: none;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+  -moz-box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+}
+#helpCover #helpNav {
+  color: #000;
+}
+#helpCover #helpNav ul {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 200px;
+  overflow-y: scroll;
+  background-color: #fff;
+}
+#helpCover #helpNav ul li p {
+  margin: 0;
+  padding: 0;
+  line-height: 20px;
+  font-size: 15px;
+  font-weight: normal;
+  margin-left: 20px;
+}
+#helpCover #helpNav ul #helpNavTitle p {
+  color: #314e64;
+  font-family: 'Droid Sans', 'Arial', 'sans-serif';
+  font-size: 20px;
+  font-weight: normal;
+  margin: 5px 20px 15px 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #314e64;
+}
+#helpCover .helpNavline {
+  color: #000;
+}
+#helpCover .helpNavline:hover {
+  background-color: #3a86ff;
+  cursor: pointer;
+  color: #fff;
+}
+#helpCover .currentNavline {
+  background-color: #3a86ff;
+  color: #fff;
+}
+#helpCover .helpNavlist {
+  margin-bottom: 5px;
+}
+#helpCover .helpNavlist p {
+  color: #3a86ff;
+  margin: 5px 20px 15px 20px;
 }

@@ -15,6 +15,9 @@ var $jqcloseButton = $jq('<button/>', {
        		$jqcover.fadeOut( "fast", function() {
     			$jqcover.remove();
   			}); 
+  			$jqhelpBox.fadeOut( "fast", function() {
+    				$jqhelpBox.remove();
+    		});
   			closeXml();	
     	}
 });
@@ -47,7 +50,7 @@ $jqhelpBox.append($jqprevButton);
 $jqhelpBox.append($jqcloseButton);
 
 $jq(document.body).append($jqcover);
-$jqcover.append($jqhelpBox);
+$jq(document.body).append($jqhelpBox);
 $jqhelpBox.fadeToggle("slow");
 createNav();
 getXml(num);
@@ -57,6 +60,9 @@ $jq(document).keyup(function(e) {
         $jqcover.fadeOut( "fast", function() {
     			$jqcover.remove();
   			}); 
+        $jqhelpBox.fadeOut( "fast", function() {
+    				$jqhelpBox.remove();
+    		});
   			closeXml();	
     }
 });
@@ -162,8 +168,19 @@ function createNav () {
 						var $jqnavli2 = $jq('<li/>', {
 						class: 'helpNavline',
 						click: function () {
-							q = parseInt($jq(this).html().charAt(3)) - 1;
-							num = parseInt($jq(this).html().charAt(5));
+							q = parseInt($jq(this).html().substr(3,$jq(this).html().indexOf('.')) - 1);
+							var numSub = "";
+							for (var i = 0; i <= $jq(this).html().length - 1; i++) {
+								if ($jq(this).html().charAt(i) == '.') {
+									i++;
+									while ($jq.isNumeric($jq(this).html().charAt(i))) {
+										numSub += $jq(this).html().charAt(i);
+										i++;
+									}
+									break;
+								}
+							};
+							num = parseInt(numSub);
 							getXml(num);
 						}
 						});
