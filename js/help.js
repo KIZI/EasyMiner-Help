@@ -115,7 +115,18 @@ function getXml(i) {
 		}
 		$jq(".helpNavline").each(function () {
 			$jq(this).removeClass('currentNavline');
-			if(num == parseInt($jq(this).html().charAt(5)) && q == parseInt($jq(this).html().charAt(3)) - 1) {
+			var numSub = "";
+			for (var y = 0; y <= $jq(this).html().length - 1; y++) {
+				if ($jq(this).html().charAt(y) == '.') {
+					y++;
+					while ($jq.isNumeric($jq(this).html().charAt(y))) {
+						numSub += $jq(this).html().charAt(y);
+						y++;
+					}
+					break;
+				}
+			};
+			if(num == parseInt(numSub) && q == parseInt($jq(this).html().substr(3,$jq(this).html().indexOf('.')) - 1)) {
 				$jq(this).addClass('currentNavline');
 			}
 		});
@@ -148,9 +159,20 @@ function createNav () {
 	var $jqnav = $jq("<ul id='helpNav'/>");
 	var $jqli = $jq("<li id='helpNavTitle'/>");
 	var $jqul = $jq('<ul/>');
+	var $jqmin = $jq('<button/>', {
+						id: 'helpMinButton',
+						text: '-',
+						click: function () {
+							$jqul.toggle();
+							$jq(this).text(function(i,text) {
+          						return text === "-" ? "+" : "-";
+      						});
+						}
+					});
 	$jqcover.append($jqnav);
-	$jqul.append($jqli);
+	$jqnav.append($jqli);
 	$jqli.html("<p>Navigation</p>");
+	$jqli.append($jqmin);
 	$jq.ajax({
 		url:'/easyminercenter/_help/xml/'+file+'.xml',
 		dataType: 'xml',

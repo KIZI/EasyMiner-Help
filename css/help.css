@@ -235,21 +235,20 @@
   list-style-position: outside;
   position: absolute;
   left: 0;
-  min-height: 400px;
-  top: 0;
   border: none;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
-  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
-  -moz-box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
 }
 #helpCover #helpNav {
+  top: 20px;
   color: #000;
+  background-color: #fff;
+  width: 200px;
 }
 #helpCover #helpNav ul {
   position: absolute;
   display: block;
   left: 0;
   width: 200px;
+  min-height: 400px;
   overflow-y: scroll;
   background-color: #fff;
 }
@@ -261,7 +260,7 @@
   font-weight: normal;
   margin-left: 20px;
 }
-#helpCover #helpNav ul #helpNavTitle p {
+#helpCover #helpNav #helpNavTitle p {
   color: #314e64;
   font-family: 'Droid Sans', 'Arial', 'sans-serif';
   font-size: 20px;
@@ -269,6 +268,16 @@
   margin: 5px 20px 15px 20px;
   padding-bottom: 5px;
   border-bottom: 1px solid #314e64;
+}
+#helpCover #helpNav #helpNavTitle button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 23px;
+  height: 23px;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
 #helpCover .helpNavline {
   color: #000;
