@@ -1,7 +1,8 @@
-function helpRun(file) {
-var lang = 'en';
 var q = 0;
 var num = 1;
+
+function helpRun(file) {
+var lang = 'en';
 var $jqcover = $jq("<div id='helpCover'/>");
 var $jqhelpBox = $jq("<div id='helpBox'/>");
 var $jqtitle = $jq("<h1/>");
@@ -73,6 +74,7 @@ function getXml(i) {
 	dataType: 'xml',
 	success: function(data) {
 	$jq("#helpVideo").remove();
+	$jqcontent.html("");
 	$jqnextButton.removeAttr('disabled');
 	$jqprevButton.removeAttr('disabled');
 	if (i > $jq(data).find('steps').eq(q).children().size()) {
@@ -103,6 +105,14 @@ function getXml(i) {
 				$jqtitle.html($jq(data).find('section').eq(q).text() + " step " + i + " / " + $jq(data).find('steps').eq(q).children().size() + "<br />" + $jq(this).find('title').find(lang).text());
 				$jq(this).find('text').each(function() {
 					$jqdescription.html($jq(this).find(lang).text());
+				});
+				$jq(this).find('html').each(function() {
+					$jq( "#helpContent" ).load( "../_help/html/" + $jq(this).text(), function( response, status, xhr ) {
+ 						if ( status == "error" ) {
+    						var msg = "Sorry but there was an error: ";
+    						alert( msg );
+  						}
+					});
 				});
 				$jq(this).find('video').each(function () {
 					$jqcontent.append($jq("<video id='helpVideo' width='320' height='240' controls/>"));
@@ -169,7 +179,7 @@ function createNav () {
       						});
 						}
 					});
-	$jqcover.append($jqnav);
+	$jq(document.body).append($jqnav);
 	$jqnav.append($jqli);
 	$jqli.html("<p>Navigation</p>");
 	$jqli.append($jqmin);

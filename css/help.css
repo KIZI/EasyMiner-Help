@@ -78,6 +78,9 @@
   width: 100%;
   margin-bottom: 60px;
 }
+#helpBox #helpContent p {
+  padding-left: 10px;
+}
 #helpBox #helpVideo {
   display: block;
   margin-left: auto;
@@ -227,23 +230,24 @@
   background-color: rgba(0,0,0,0.9);
   z-index: 10;
 }
-#helpCover #helpNav,
-#helpCover #helpNav ul {
+#helpNav,
+#helpNav ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
   list-style-position: outside;
-  position: absolute;
+  position: fixed;
   left: 0;
   border: none;
+  z-index: 100;
 }
-#helpCover #helpNav {
+#helpNav {
   top: 20px;
   color: #000;
   background-color: #fff;
   width: 200px;
 }
-#helpCover #helpNav ul {
+#helpNav ul {
   position: absolute;
   display: block;
   left: 0;
@@ -252,7 +256,7 @@
   overflow-y: scroll;
   background-color: #fff;
 }
-#helpCover #helpNav ul li p {
+#helpNav ul li p {
   margin: 0;
   padding: 0;
   line-height: 20px;
@@ -260,7 +264,7 @@
   font-weight: normal;
   margin-left: 20px;
 }
-#helpCover #helpNav #helpNavTitle p {
+#helpNav #helpNavTitle p {
   color: #314e64;
   font-family: 'Droid Sans', 'Arial', 'sans-serif';
   font-size: 20px;
@@ -269,7 +273,7 @@
   padding-bottom: 5px;
   border-bottom: 1px solid #314e64;
 }
-#helpCover #helpNav #helpNavTitle button {
+#helpNav #helpNavTitle button {
   position: absolute;
   top: 0;
   right: 0;
@@ -279,22 +283,22 @@
   border: none;
   outline: none;
 }
-#helpCover .helpNavline {
+.helpNavline {
   color: #000;
 }
-#helpCover .helpNavline:hover {
+.helpNavline:hover {
   background-color: #3a86ff;
   cursor: pointer;
   color: #fff;
 }
-#helpCover .currentNavline {
+.currentNavline {
   background-color: #3a86ff;
   color: #fff;
 }
-#helpCover .helpNavlist {
+.helpNavlist {
   margin-bottom: 5px;
 }
-#helpCover .helpNavlist p {
+.helpNavlist p {
   color: #3a86ff;
   margin: 5px 20px 15px 20px;
 }

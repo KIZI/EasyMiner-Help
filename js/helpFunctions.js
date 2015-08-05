@@ -1,12 +1,12 @@
 var $jq = jQuery;
+var $jqhelpColor = "";
 function highlight (id) {
+    $jqhelpColor = $jq("#" + id + "").css('backgroundColor');
 	$jq("#" + id + "").css({
 		"position" : "relative", 
 		"z-index" : "11", 
 		"opacity" : "0.01",
-		"border-color": "#0049FF", 
-        "border-width":"2px", 
-        "border-style":"solid"
+        "background-color":"#63FE44"
 	});
 
 	$jq("#" + id + "").fadeTo("slow", 1);
@@ -15,7 +15,7 @@ function highlight (id) {
 function darken (id) {
 	$jq("#"+id+"").css({
 		"z-index" : "0",
-		"border-style":"none"
+        "background-color":$jqhelpColor
 		});
 }
 

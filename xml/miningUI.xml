@@ -9,9 +9,8 @@
 				<cz>Vytvoření atributů</cz>
 			</title>
 			<text>
-				<en>To create new attribute, drag any item from Data fields to Attributes or just simply click a plus icon next to it. A configuration window will appear.</en>
-				<cz>K vytvoření nového atributu přesuňte jakoukoliv položku z Data fields do Attributes, nebo klikněte na ikonu plusu velde dané položky. Objeví se konfigurační okno.</cz>
 			</text>
+			<html>1_1.html</html>
 		</step>
 		<step>
 			<id>attributes</id>
@@ -20,18 +19,43 @@
 				<cz>Úprava atributů</cz>
 			</title>
 			<text>
-				<en>An attribute cannot be edited after you create it. You can remove it by clicking a cross icon next to it and create a new one if you need to.</en>
-				<cz>Atribut nelze upravovat po jeho vytvoření. Můžete ho odstranit kliknutím na ikonu křížku a vytvořit pak nový, pokud potřebujete.</cz>
+			</text>
+			<html>1_2.html</html>
+		</step>
+		<step>
+			<id>antecedent</id>
+			<id>interest-measures</id>
+			<id>succedent</id>
+			<title>
+				<en>Association rule pattern</en>
+				<cz>Association rule pattern</cz>
+			</title>
+			<text>
+				<en>Association rule pattern consists of three elements. Antecedent, Interest measures and Consequent. These must be set before mining.</en>
+				<cz>Nějaký text</cz>
 			</text>
 		</step>
 		<step>
-			<id>knowledge-base-select</id>
+			<id>antecedent</id>
+			<id>attributes</id>
 			<title>
-				<en>Some title</en>
-				<cz>Nějaký název</cz>
+				<en>Antecedent</en>
+				<cz>Antecedent</cz>
 			</title>
 			<text>
-				<en>Some text</en>
+				<en>Move one or more attributes to Antecedent or click a plus icon next to it (in this case you have to choose where to add it and confirm by clicking Add). You will be asked to set value merging. You can change it afterwards by clicking an edit icon below added attribute.</en>
+				<cz>Nějaký text</cz>
+			</text>
+		</step>
+		<step>
+			<id>succedent</id>
+			<id>attributes</id>
+			<title>
+				<en>Consequent</en>
+				<cz>Consequent</cz>
+			</title>
+			<text>
+				<en>Move one or more attributes to Consequent or click a plus icon next to it (in this case you have to choose where to add it and confirm by clicking Add). You will be asked to set value merging. You can change it afterwards by clicking an edit icon below added attribute. </en>
 				<cz>Nějaký text</cz>
 			</text>
 		</step>
