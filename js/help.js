@@ -166,38 +166,44 @@ function closeXml() {
 }
 
 function createNav () {
-	var $jqnav = $jq("<ul id='helpNav'/>");
-	var $jqli = $jq("<li id='helpNavTitle'/>");
-	var $jqul = $jq('<ul/>');
+	var $jqnav = $jq("<div id='helpNav'/>");
+	var $jqnavcon = $jq("<div id='helpNavContent'/>");
 	var $jqmin = $jq('<button/>', {
 						id: 'helpMinButton',
 						text: '-',
 						click: function () {
-							$jqul.toggle();
+							$jqnavcon.toggle();
 							$jq(this).text(function(i,text) {
           						return text === "-" ? "+" : "-";
       						});
 						}
 					});
+	$jqnav.append($jq("<h2>Navigation</h2>"));
+	$jqnav.append($jqmin);
 	$jq(document.body).append($jqnav);
-	$jqnav.append($jqli);
-	$jqli.html("<p>Navigation</p>");
-	$jqli.append($jqmin);
 	$jq.ajax({
 		url:'/easyminercenter/_help/xml/'+file+'.xml',
 		dataType: 'xml',
 		success: function(data) {
 			p = 0;	
 			$jq(data).find('section').each(function() {
-				var $jqnavli = $jq('<li/>', {
-				class: 'helpNavlist',
+				var $jqul = $jq("<ul class='helpUl'/>");
+				var $jqli = $jq("<li class='helpLi'/>");
+				var $jqul2 = $jq("<ul/>");
+				$jqli.html("<h3>" + $jq(this).text() + "<span>+</span></h3>");
+				$jqli.find('h3').click(function() {
+					$jq(this).find('span').text(function(i,text) {
+          						return text === "-" ? "+" : "-";
+      						});
+					$jq(this).parent().find('ul').toggle();
 				});
-				$jqnavli.html("<p>" + $jq(this).text() + "</p>");
-				$jqul.append($jqnavli);
+				$jqli.append($jqul2);
+				$jqul.append($jqli);
+				$jqnavcon.append($jqul);
 				$jq(data).find('steps').eq(p).each(function() {
 					j = 1;
 					$jq(this).find('step').each(function () {
-						var $jqnavli2 = $jq('<li/>', {
+						var $jqnavli = $jq('<li/>', {
 						class: 'helpNavline',
 						click: function () {
 							q = parseInt($jq(this).html().substr(3,$jq(this).html().indexOf('.')) - 1);
@@ -216,22 +222,21 @@ function createNav () {
 							getXml(num);
 						}
 						});
-						$jqnavli2.html("<p>" + (p+1) + "." + j + " " + $jq(this).find('title').find(lang).text() + "</p>");
+						$jqnavli.html("<p>" + (p+1) + "." + j + " " + $jq(this).find('title').find(lang).text() + "</p>");
 						if (p == q && j == num) {
-							$jqnavli2.addClass('currentNavline');
+							$jqnavli.addClass('currentNavline');
 						}
-						$jqul.append($jqnavli2);
+						$jqul2.append($jqnavli);
 						j++;
 					});
 				});
 				p++;
 			});		
-			
+				$jqnav.append($jqnavcon);
 		},
 		error: function() {
 			$jq('.timeline').text('Failed to get feed');
 		}
 	});
-	$jqnav.append($jqul);
 }
 }

@@ -1,22 +1,11 @@
 var $jq = jQuery;
-var $jqhelpColor = "";
 function highlight (id) {
-    $jqhelpColor = $jq("#" + id + "").css('backgroundColor');
-	$jq("#" + id + "").css({
-		"position" : "relative", 
-		"z-index" : "11", 
-		"opacity" : "0.01",
-        "background-color":"#63FE44"
-	});
-
-	$jq("#" + id + "").fadeTo("slow", 1);
+	$jq("#" + id + "").addClass("helpHighlighted");
+    $jq("#" + id + "").fadeTo("slow", 1);
 }
 
 function darken (id) {
-	$jq("#"+id+"").css({
-		"z-index" : "0",
-        "background-color":$jqhelpColor
-		});
+	$jq("#"+id+"").removeClass("helpHighlighted");
 }
 
 function draggable(e) {

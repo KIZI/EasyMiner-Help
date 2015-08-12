@@ -6,7 +6,7 @@
   background-color: #fff;
   left: 50%;
   transform: translateX(-50%);
-  box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.6);
+  box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.6);
   z-index: 12;
   display: none;
 }
@@ -67,11 +67,15 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 23px;
+  width: 50px;
   height: 23px;
   border: none;
   outline: none;
   cursor: pointer;
+}
+#helpBox #helpCloseButton:hover {
+  background-color: #f00;
+  color: #fff;
 }
 #helpBox #helpContent {
   position: relative;
@@ -230,41 +234,17 @@
   background-color: rgba(0,0,0,0.9);
   z-index: 10;
 }
-#helpNav,
-#helpNav ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  list-style-position: outside;
+#helpNav {
   position: fixed;
-  left: 0;
-  border: none;
+  top: 20px;
+  left: 20px;
+  width: 250px;
+  min-height: 50px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 2px #000;
   z-index: 100;
 }
-#helpNav {
-  top: 20px;
-  color: #000;
-  background-color: #fff;
-  width: 200px;
-}
-#helpNav ul {
-  position: absolute;
-  display: block;
-  left: 0;
-  width: 200px;
-  min-height: 400px;
-  overflow-y: scroll;
-  background-color: #fff;
-}
-#helpNav ul li p {
-  margin: 0;
-  padding: 0;
-  line-height: 20px;
-  font-size: 15px;
-  font-weight: normal;
-  margin-left: 20px;
-}
-#helpNav #helpNavTitle p {
+#helpNav h2 {
   color: #314e64;
   font-family: 'Droid Sans', 'Arial', 'sans-serif';
   font-size: 20px;
@@ -273,32 +253,84 @@
   padding-bottom: 5px;
   border-bottom: 1px solid #314e64;
 }
-#helpNav #helpNavTitle button {
+#helpNav #helpMinButton {
   position: absolute;
-  top: 0;
   right: 0;
-  width: 23px;
+  top: 0;
+  width: 50px;
   height: 23px;
-  cursor: pointer;
   border: none;
   outline: none;
 }
-.helpNavline {
-  color: #000;
-}
-.helpNavline:hover {
+#helpNav #helpMinButton:hover {
   background-color: #3a86ff;
+  color: #fff;
   cursor: pointer;
-  color: #fff;
 }
-.currentNavline {
+#helpNav #helpNavContent {
+  width: 250px;
+}
+#helpNav #helpNavContent .helpUl {
+  list-style: none;
+  color: #000;
+  padding: 0;
+  margin: 0;
+}
+#helpNav #helpNavContent .helpLi {
+  margin: 0;
+}
+#helpNav #helpNavContent .helpLi h3 {
+  display: block;
+  font-family: 'Droid Sans', 'Arial', 'sans-serif';
+  padding-left: 20px;
+  color: #3a86ff;
+}
+#helpNav #helpNavContent .helpLi h3:hover {
+  cursor: pointer;
+  box-shadow: inset 0 0 5px #3a86ff;
+}
+#helpNav #helpNavContent .helpLi h3 span {
+  position: absolute;
+  right: 0;
+  padding-right: 20px;
+}
+#helpNav #helpNavContent .helpLi ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+#helpNav #helpNavContent .helpLi ul .helpNavline {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 250px;
+}
+#helpNav #helpNavContent .helpLi ul .helpNavline:hover {
   background-color: #3a86ff;
   color: #fff;
+  cursor: pointer;
 }
-.helpNavlist {
-  margin-bottom: 5px;
+#helpNav #helpNavContent .helpLi ul .helpNavline:hover p {
+  color: #fff;
 }
-.helpNavlist p {
-  color: #3a86ff;
-  margin: 5px 20px 15px 20px;
+#helpNav #helpNavContent .helpLi ul .helpNavline p {
+  color: #000;
+  margin: 0;
+  padding-left: 20px;
+}
+#helpNav #helpNavContent .helpLi ul .helpNavline p:hover {
+  text-decoration: none;
+}
+#helpNav #helpNavContent .helpLi ul .currentNavline {
+  background-color: #3a86ff;
+}
+#helpNav #helpNavContent .helpLi ul .currentNavline p {
+  color: #fff;
+}
+.helpHighlighted {
+  position: relative;
+  z-index: 11;
+  opacity: 0.01;
+  background-color: #63fe44 !important;
 }
