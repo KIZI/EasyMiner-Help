@@ -1,4 +1,5 @@
 font-family = 'Droid Sans', 'Arial', 'sans-serif'
+nav-width = 250px
 
 #helpBox
   position fixed
@@ -8,7 +9,7 @@ font-family = 'Droid Sans', 'Arial', 'sans-serif'
   background-color white
   left 50%
   transform translateX(-50%)
-  box-shadow 5px 5px 5px 0 rgba(0,0,0,0.6)
+  box-shadow 0px 0px 10px 2px rgba(0,0,0,0.6)
   z-index 12
   display none
   h1
@@ -66,11 +67,14 @@ font-family = 'Droid Sans', 'Arial', 'sans-serif'
     position absolute
     top 0
     right 0
-    width 23px
+    width 50px
     height 23px
     border none
     outline none
     cursor pointer
+    &:hover
+      background-color red
+      color white
 
   @keyframes slideR 
       0% 
@@ -126,71 +130,95 @@ font-family = 'Droid Sans', 'Arial', 'sans-serif'
   background-color rgba(0,0,0,0.9)
   z-index 10
 
-#helpNav, #helpNav ul
-  margin 0
-  padding 0
-  list-style-type none
-  list-style-position outside
+#helpNav 
   position fixed
-  left 0
-  border none
-  z-index 100
-
-#helpNav
   top 20px
-  color black
+  left 20px
+  width nav-width
+  min-height 50px
   background-color white
-  width 200px
-  ul
+  box-shadow 0px 0px 10px 2px black
+  z-index 100
+  h2
+    color #314e64
+    font-family font-family
+    font-size 20px
+    font-weight normal
+    margin 5px 20px 15px 20px
+    padding-bottom 5px
+    border-bottom 1px solid #314e64
+
+  #helpMinButton
     position absolute
-    display block
-    left 0
-    width 200px
-    min-height 400px
-    overflow-y scroll
-    background-color white
-    li
-      p
+    right 0
+    top 0
+    width 50px
+    height 23px
+    border none
+    outline none
+    &:hover
+      background-color #3A86FF
+      color white
+      cursor pointer
+    
+  #helpNavContent
+    width nav-width
+  
+    .helpUl
+      list-style none
+      color black
+      padding 0
+      margin 0
+    
+    .helpLi
+      margin 0
+      h3
+        display block
+        font-family font-family
+        padding-left 20px
+        color #3A86FF
+        &:hover 
+          cursor pointer
+          box-shadow inset 0 0 5px #3A86FF
+        span
+          position absolute
+          right 0
+          padding-right 20px
+      ul  
+        list-style none
         margin 0
         padding 0
-        line-height 20px
-        font-size 15px
-        font-weight normal
-        margin-left 20px
-  #helpNavTitle
-    p
-      color #314e64
-      font-family font-family
-      font-size 20px
-      font-weight normal
-      margin 5px 20px 15px 20px
-      padding-bottom 5px
-      border-bottom 1px solid #314e64
-    button
-      position absolute
-      top 0
-      right 0
-      width 23px
-      height 23px
-      cursor pointer
-      border none
-      outline none
+        display none
+        .helpNavline
+          display block
+          margin 0
+          padding 0
+          width nav-width
+          &:hover 
+            background-color #3A86FF
+            color white
+            cursor pointer
+            p
+              color white
+          p
+            color black
+            margin 0
+            padding-left 20px
+            &:hover 
+              text-decoration none
+        .currentNavline
+          background-color #3A86FF
+          p
+            color white
 
-.helpNavline
-  color black
-  &:hover
-    background-color #3A86FF
-    cursor pointer
-    color white
-    
-.currentNavline
-  background-color #3A86FF
-  color white
-    
-.helpNavlist 
-  margin-bottom 5px
-  p
-    color #3A86FF
-    margin 5px 20px 15px 20px
+.helpHighlighted
+  position relative
+  z-index 11
+  opacity 0.01
+  background-color #63FE44 !important
   
+          
+        
+         
+   
  
