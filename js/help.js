@@ -137,6 +137,7 @@ var EMHelp=function(params){
      * @param i
      */
     this.getXml = function (i) {
+      var lang=this.lang;
       $jq.ajax({
         url: this.dataDirectoryUrl + this.dataFile,
         dataType: 'xml',
@@ -170,10 +171,10 @@ var EMHelp=function(params){
                 id = $jq(this).text();
               });
               $jq("html, body").animate({scrollTop: $jq("#" + id + "").offset().top - 20}, 1000);
-              $jqtitle.html($jq(data).find('section').eq(q).text() + " step " + i + " / " + $jq(data).find('steps').eq(q).children().size() + "<br />" + $jq(this).find('title').find(this.lang).text());
+              $jqtitle.html($jq(data).find('section').eq(q).text() + " step " + i + " / " + $jq(data).find('steps').eq(q).children().size() + "<br />" + $jq(this).find('title').find(lang).text());
               $jq(this).find('text').each(function () {
-                $jqdescription.html($jq(this).find('en').text());
-              }.bind(this));
+                $jqdescription.html($jq(this).find(lang).text());
+              });
               $jq(this).find('html').each(function () {
                 $jq("#helpContent").load("../_help/html/" + $jq(this).text(), function (response, status, xhr) {
                   if (status == "error") {
@@ -186,7 +187,7 @@ var EMHelp=function(params){
                 $jqcontent.append($jq("<video id='helpVideo' width='320' height='240' controls/>"));
                 $jq("#helpVideo").attr('src', $jq(this).text());
               });
-            });
+            }.bind(this));
           });
           if (i == $jq(data).find('steps').eq(q).children().size() && q == $jq(data).find('steps').size() - 1) {
             $jqnextButton.attr('disabled', 'disabled');
@@ -286,10 +287,10 @@ var EMHelp=function(params){
                       }
                     break;
                     }
-                  };
+                  }
                  num = parseInt(numSub);
                  this.getXml(num);
-                }
+                }.bind(this)
               });
               $jqnavli.html("<p>" + (p+1) + "." + j + " " + $jq(this).find('title').find('en').text() + "</p>");
               if (p == q && j == num) {
