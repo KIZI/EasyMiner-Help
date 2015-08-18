@@ -30,9 +30,9 @@ var EMHelp=function(params){
 
 
   var $jq = jQuery;
-  var $jqhelpColor = "";
   var q = 0;
   var num = 1;
+  var that = this;
 
   var highlight = function(id) {
    $jq("#" + id + "").addClass("helpHighlighted");
@@ -137,7 +137,6 @@ var EMHelp=function(params){
      * @param i
      */
     this.getXml = function (i) {
-      var lang=this.lang;
       $jq.ajax({
         url: this.dataDirectoryUrl + this.dataFile,
         dataType: 'xml',
@@ -171,9 +170,9 @@ var EMHelp=function(params){
                 id = $jq(this).text();
               });
               $jq("html, body").animate({scrollTop: $jq("#" + id + "").offset().top - 20}, 1000);
-              $jqtitle.html($jq(data).find('section').eq(q).text() + " step " + i + " / " + $jq(data).find('steps').eq(q).children().size() + "<br />" + $jq(this).find('title').find(lang).text());
+              $jqtitle.html($jq(data).find('section').eq(q).text() + " step " + i + " / " + $jq(data).find('steps').eq(q).children().size() + "<br />" + $jq(this).find('title').find(that.lang).text());
               $jq(this).find('text').each(function () {
-                $jqdescription.html($jq(this).find(lang).text());
+                $jqdescription.html($jq(this).find(that.lang).text());
               });
               $jq(this).find('html').each(function () {
                 $jq("#helpContent").load("../_help/html/" + $jq(this).text(), function (response, status, xhr) {
@@ -187,25 +186,14 @@ var EMHelp=function(params){
                 $jqcontent.append($jq("<video id='helpVideo' width='320' height='240' controls/>"));
                 $jq("#helpVideo").attr('src', $jq(this).text());
               });
-            }.bind(this));
+            });
           });
           if (i == $jq(data).find('steps').eq(q).children().size() && q == $jq(data).find('steps').size() - 1) {
             $jqnextButton.attr('disabled', 'disabled');
           }
           $jq(".helpNavline").each(function () {
             $jq(this).removeClass('currentNavline');
-            var numSub = "";
-            for (var y = 0; y <= $jq(this).html().length - 1; y++) {
-              if ($jq(this).html().charAt(y) == '.') {
-                y++;
-                while ($jq.isNumeric($jq(this).html().charAt(y))) {
-                  numSub += $jq(this).html().charAt(y);
-                  y++;
-                }
-                break;
-              }
-            }
-            if (num == parseInt(numSub) && q == parseInt($jq(this).html().substr(3, $jq(this).html().indexOf('.')) - 1)) {
+            if (num == $jq(this).attr('num2') && q == $jq(this).attr('num1')) {
               $jq(this).addClass('currentNavline');
             }
           });
@@ -272,27 +260,17 @@ var EMHelp=function(params){
           $jq(data).find('steps').eq(p).each(function() {
             j = 1;
             $jq(this).find('step').each(function () {
-
               var $jqnavli = $jq('<li/>', {
                 class: 'helpNavline',
+                num1: p,
+                num2: j,
                 click: function() {
-                  q = parseInt($jq(this).html().substr(3,$jq(this).html().indexOf('.')) - 1);
-                  var numSub = "";
-                  for (var i = 0; i <= $jq(this).html().length - 1; i++) {
-                    if ($jq(this).html().charAt(i) == '.') {
-                      i++;
-                      while ($jq.isNumeric($jq(this).html().charAt(i))) {
-                        numSub += $jq(this).html().charAt(i);
-                        i++;
-                      }
-                    break;
-                    }
-                  }
-                 num = parseInt(numSub);
-                 this.getXml(num);
-                }.bind(this)
+                  q = $jq(this).attr('num1');
+                  num = $jq(this).attr('num2');
+                  that.getXml(num);
+                }
               });
-              $jqnavli.html("<p>" + (p+1) + "." + j + " " + $jq(this).find('title').find('en').text() + "</p>");
+              $jqnavli.html("<p>" + j + " " + $jq(this).find('title').find('en').text() + "</p>");
               if (p == q && j == num) {
                 $jqnavli.addClass('currentNavline');
               }
