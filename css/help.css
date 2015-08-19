@@ -278,12 +278,18 @@
 }
 #helpNav #helpNavContent .helpLi {
   margin: 0;
+  padding: 0;
 }
 #helpNav #helpNavContent .helpLi h3 {
+  margin: 0;
+  padding: 0;
   display: block;
   font-family: 'Droid Sans', 'Arial', 'sans-serif';
   padding-left: 20px;
+  margin-bottom: 10px;
   color: #3a86ff;
+  font-size: 20px;
+  line-height: 25px;
 }
 #helpNav #helpNavContent .helpLi h3:hover {
   cursor: pointer;
@@ -304,7 +310,9 @@
   display: block;
   margin: 0;
   padding: 0;
+  margin-bottom: 7px;
   width: 250px;
+  background-color: #d1d1d1;
 }
 #helpNav #helpNavContent .helpLi ul .helpNavline:hover {
   background-color: #3a86ff;

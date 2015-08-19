@@ -71,6 +71,7 @@ var EMHelp=function(params){
   this.show = function() {
     var $jqcover = $jq("<div id='helpCover'/>");
     var $jqhelpBox = $jq("<div id='helpBox'/>");
+    var $jqhelpBoxDiv = $jq("<div id='helpBoxDiv'/>");
     var $jqtitle = $jq("<h1/>");
     var $jqdescription = $jq("<p/>");
     var $jqcontent = $jq("<div id='helpContent'/>");
@@ -94,7 +95,10 @@ var EMHelp=function(params){
       class: 'helpBtn',
       click: function () {
         num++;
-        this.getXml(num);
+        $jqhelpBoxDiv.fadeOut('fast',function() {
+          this.getXml(num);
+        }.bind(this));
+        $jqhelpBoxDiv.fadeIn('fast');
       }.bind(this)
     });
 
@@ -103,15 +107,19 @@ var EMHelp=function(params){
       class: 'helpBtn',
       click: function () {
         num--;
-        this.getXml(num);
+        $jqhelpBoxDiv.fadeOut('fast',function() {
+          this.getXml(num);
+        }.bind(this));
+        $jqhelpBoxDiv.fadeIn('fast');
       }.bind(this)
     });
 
     $jqhelpBox.mousedown(draggable);
 
-    $jqhelpBox.append($jqtitle);
-    $jqhelpBox.append($jqdescription);
-    $jqhelpBox.append($jqcontent);
+    $jqhelpBoxDiv.append($jqtitle);
+    $jqhelpBoxDiv.append($jqdescription);
+    $jqhelpBoxDiv.append($jqcontent);
+    $jqhelpBox.append($jqhelpBoxDiv);
     $jqhelpBox.append($jqnextButton);
     $jqhelpBox.append($jqprevButton);
     $jqhelpBox.append($jqcloseButton);
@@ -145,61 +153,74 @@ var EMHelp=function(params){
           $jqcontent.html("");
           $jqnextButton.removeAttr('disabled');
           $jqprevButton.removeAttr('disabled');
-          if (i > $jq(data).find('steps').eq(q).children().size()) {
-            q++;
-            i = 1;
-            num = 1;
-          }
-          if (i == 0) {
-            q--;
-            i = $jq(data).find('steps').eq(q).children().size();
-            num = $jq(data).find('steps').eq(q).children().size();
-          }
-          if (i == 1 && q == 0) {
-            $jqprevButton.attr('disabled', 'disabled');
-          }
-          $jq(data).find('step').each(function () {
-            $jq(this).find('id').each(function () {
-              darken($jq(this).text());
-            });
-          });
-          $jq(data).find('steps').eq(q).each(function () {
-            $jq(this).find('step:nth-child(' + i + ')').each(function () {
+
+          //find language
+          $jq(data).find(that.lang).each(function() {
+
+            if (i > $jq(this).find('steps').eq(q).children().size()) {
+              q++;
+              i = 1;
+              num = 1;
+            }
+
+            if (i == 0) {
+              q--;
+              i = $jq(this).find('steps').eq(q).children().size();
+              num = $jq(this).find('steps').eq(q).children().size();
+            }
+
+            if (i == 1 && q == 0) {
+              $jqprevButton.attr('disabled', 'disabled');
+            }
+            //darken every highlighted elements
+            $jq(this).find('step').each(function () {
               $jq(this).find('id').each(function () {
-                highlight($jq(this).text());
-                id = $jq(this).text();
+                darken($jq(this).text());
               });
-              $jq("html, body").animate({scrollTop: $jq("#" + id + "").offset().top - 20}, 1000);
-              $jqtitle.html($jq(data).find('section').eq(q).text() + " step " + i + " / " + $jq(data).find('steps').eq(q).children().size() + "<br />" + $jq(this).find('title').find(that.lang).text());
-              $jq(this).find('text').each(function () {
-                $jqdescription.html($jq(this).find(that.lang).text());
-              });
-              $jq(this).find('html').each(function () {
-                $jq("#helpContent").load("../_help/html/" + $jq(this).text(), function (response, status, xhr) {
-                  if (status == "error") {
-                    var msg = "Sorry but there was an error: ";
-                    alert(msg);
-                  }
+            });
+
+            $jq(this).find('steps').eq(q).each(function () {
+              $jq(this).find('step:nth-child(' + i + ')').each(function () {
+                $jq(this).find('id').each(function () {
+                  highlight($jq(this).text());
+                  id = $jq(this).text();
+                });
+                $jq("html, body").animate({scrollTop: $jq("#" + id + "").offset().top - 20}, 300);
+                $jqtitle.html($jq(data).find(that.lang).find('section').eq(q).text() 
+                + " step " + i + " / " + $jq(data).find(that.lang).find('steps').eq(q).children().size() 
+                + "<br />" + $jq(this).find('title').text());
+               
+                $jqdescription.html($jq(this).find('text').text());
+                
+                $jq(this).find('html').each(function () {
+                  $jq("#helpContent").load("../_help/data/html/" + $jq(this).text(), function (response, status, xhr) {
+                    if (status == "error") {
+                      var msg = "Sorry but there was an error: ";
+                      alert(msg);
+                    }
+                  });
+                });
+                $jq(this).find('video').each(function () {
+                  $jqcontent.append($jq("<video id='helpVideo' width='320' height='240' controls/>"));
+                  $jq("#helpVideo").attr('src', $jq(this).text());
                 });
               });
-              $jq(this).find('video').each(function () {
-                $jqcontent.append($jq("<video id='helpVideo' width='320' height='240' controls/>"));
-                $jq("#helpVideo").attr('src', $jq(this).text());
-              });
             });
-          });
-          if (i == $jq(data).find('steps').eq(q).children().size() && q == $jq(data).find('steps').size() - 1) {
-            $jqnextButton.attr('disabled', 'disabled');
-          }
-          $jq(".helpNavline").each(function () {
-            $jq(this).removeClass('currentNavline');
-            if (num == $jq(this).attr('num2') && q == $jq(this).attr('num1')) {
-              $jq(this).addClass('currentNavline');
+            //disable next button if last step
+            if (i == $jq(this).find('steps').eq(q).children().size() && q == $jq(this).find('steps').size() - 1) {
+              $jqnextButton.attr('disabled', 'disabled');
             }
+            //hilight active menu item
+            $jq(".helpNavline").each(function () {
+              $jq(this).removeClass('currentNavline');
+              if (num == $jq(this).attr('num2') && q == $jq(this).attr('num1')) {
+                $jq(this).addClass('currentNavline');
+              }
+            });
           });
         },
         error: function () {
-          $jq('.timeline').text('Failed to get feed');
+            $jq('.timeline').text('Failed to get feed');
         }
       });
     };
@@ -243,7 +264,7 @@ var EMHelp=function(params){
       dataType: 'xml',
       success: function(data) {
         p = 0;  
-        $jq(data).find('section').each(function() {
+        $jq(data).find(that.lang).find('section').each(function() {
           var $jqul = $jq("<ul class='helpUl'/>");
           var $jqli = $jq("<li class='helpLi'/>");
           var $jqul2 = $jq("<ul/>");
@@ -257,7 +278,7 @@ var EMHelp=function(params){
           $jqli.append($jqul2);
           $jqul.append($jqli);
           $jqnavcon.append($jqul);
-          $jq(data).find('steps').eq(p).each(function() {
+          $jq(data).find(that.lang).find('steps').eq(p).each(function() {
             j = 1;
             $jq(this).find('step').each(function () {
               var $jqnavli = $jq('<li/>', {
@@ -267,10 +288,13 @@ var EMHelp=function(params){
                 click: function() {
                   q = $jq(this).attr('num1');
                   num = $jq(this).attr('num2');
-                  that.getXml(num);
+                  $jqhelpBoxDiv.fadeOut('fast',function() {
+                      that.getXml(num);
+                  });
+                  $jqhelpBoxDiv.fadeIn('fast');
                 }
               });
-              $jqnavli.html("<p>" + j + " " + $jq(this).find('title').find('en').text() + "</p>");
+              $jqnavli.html("<p>" + $jq(this).find('title').text() + "</p>");
               if (p == q && j == num) {
                 $jqnavli.addClass('currentNavline');
               }
@@ -286,9 +310,8 @@ var EMHelp=function(params){
       error: function() {
         $jq('.timeline').text('Failed to get feed');
       }
-  });
-
-};
+      });
+    };
 
     //run
     this.createNav();

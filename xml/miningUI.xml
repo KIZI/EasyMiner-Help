@@ -1,88 +1,82 @@
 <help>
-	<section>Preparation</section>
-	<steps>
-		<step>
-			<id>data-fields</id>
-			<id>attributes</id>
-			<title>
-				<en>Creating attributes</en>
-				<cz>Vytvoření atributů</cz>
-			</title>
-			<text>
-			</text>
-			<html>1_1.html</html>
-		</step>
-		<step>
-			<id>attributes</id>
-			<title>
-				<en>Editing attributes</en>
-				<cz>Úprava atributů</cz>
-			</title>
-			<text>
-			</text>
-			<html>1_2.html</html>
-		</step>
-		<step>
-			<id>antecedent</id>
-			<id>interest-measures</id>
-			<id>succedent</id>
-			<title>
-				<en>Association rule pattern</en>
-				<cz>Association rule pattern</cz>
-			</title>
-			<text>
-				<en>Association rule pattern consists of three elements. Antecedent, Interest measures and Consequent. These must be set before mining.</en>
-				<cz>Nějaký text</cz>
-			</text>
-		</step>
-		<step>
-			<id>antecedent</id>
-			<id>attributes</id>
-			<title>
-				<en>Antecedent</en>
-				<cz>Antecedent</cz>
-			</title>
-			<text>
-				<en>Move one or more attributes to Antecedent or click a plus icon next to it (in this case you have to choose where to add it and confirm by clicking Add). You will be asked to set value merging. You can change it afterwards by clicking an edit icon below added attribute.</en>
-				<cz>Nějaký text</cz>
-			</text>
-		</step>
-		<step>
-			<id>succedent</id>
-			<id>attributes</id>
-			<title>
-				<en>Consequent</en>
-				<cz>Consequent</cz>
-			</title>
-			<text>
-				<en>Move one or more attributes to Consequent or click a plus icon next to it (in this case you have to choose where to add it and confirm by clicking Add). You will be asked to set value merging. You can change it afterwards by clicking an edit icon below added attribute. </en>
-				<cz>Nějaký text</cz>
-			</text>
-		</step>
-	</steps>
-	<section>Mining</section>
-	<steps>
-		<step>
-			<id>knowledge-base-select</id>
-			<title>
-				<en>Some title</en>
-				<cz>Nějaký název</cz>
-			</title>
-			<text>
-				<en>Some text</en>
-				<cz>Nějaký text</cz>
-			</text>
-		</step>
-		<step>
-			<id>attributes</id>
-			<title>
-				<en>Some title</en>
-				<cz>Nějaký název</cz>
-			</title>
-			<text>
-				<en>Some text</en>
-				<cz>Nějaký text</cz>
-			</text>
-		</step>
-	</steps>
+	<en>
+		<section>Attributes</section>
+		<steps>
+			<step>
+				<id>data-fields</id>
+				<id>attributes</id>
+				<title>Creating</title>
+				<html>1_1.html</html>
+			</step>
+			<step>
+				<title>Configuration</title>
+				<text>
+					You will be asked to choose a preprocessing method. There are up to four options depending on data format of particular data field. Those options are: Interval enumeration, Equidistant intervals, Nominal enumeration, Each value - one bin.
+				</text>
+			</step>
+			<step>
+				<title>Preprocessing - Interval enumeration</title>
+				<text>
+					It is only possible with numeric formats. It distributes the data into intervals, which is good mainly for data with wide variability. That could be for example age, year, salary or any other data field with lots of different numbers. A wise choice of intervals can improve finding interesting rules.
+				</text>
+			</step>
+			<step>
+				<title>Preprocessing - Equidistant intervals</title>
+				<text>
+					Similar to interval enumeration except that the length of intervals is always the same. You can choose initial and final value and interval count. It will automatically create equidistant intervals according to the specified values.
+				</text>
+			</step>
+			<step>
+				<title>Preprocessing - Nominal enumeration</title>
+				<text>
+					Nominal enumeration is available for all formats. It allows you to create groups of values. This can be useful when there are many different values. Distributing them into several groups can help you to find more rules. Also make sure that the data in each group are somehow related (selecting random values ​​may result worse outcomes).
+				</text>
+			</step>
+			<step>
+				<title>Preprocessing - Each value</title>
+				<text>
+					As the name implies, each value is for itself. It is good for data fields where the data can take only few values such as ‘gender’ or ‘rating’. However you can use it for any other data field if it suits your needs.
+				</text>
+			</step>
+			<step>
+				<title>Editing/Hiding</title>
+				<id>attributes</id>
+				<html>attributes_editing.html</html>
+			</step>
+		</steps>
+		<section>Mining</section>
+		<steps>
+			<step>
+				<id>knowledge-base-select</id>
+				<title>Some title</title>
+				<text>Some text</text>
+			</step>
+		</steps>
+	</en>
+	
+	<cz>
+		<section>Atributy</section>
+		<steps>
+			<step>
+				<id>data-fields</id>
+				<id>attributes</id>
+				<title>Vytváření</title>
+				<html>1_1.html</html>
+			</step>
+			<step>
+				<title>Konfigurace</title>
+				<text>
+					Budete vyzváni k výběru preprocessingové metody. Na výběr jsou až čtyři různé možnosti. Počet možností závisí na formátu dat příslušného datového pole. Možnosti jsou: Interval enumeration, Equidistant intervals, Nominal enumeration, Each value - one bin.
+				</text>
+			</step>
+		</steps>
+		<section>Mining</section>
+		<steps>
+			<step>
+				<id>knowledge-base-select</id>
+				<title>Nějaký název</title>
+				<text>Nějaký text</text>
+			</step>
+		</steps>
+	</cz>
 </help>
