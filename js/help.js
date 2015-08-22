@@ -215,6 +215,21 @@ var EMHelp=function(params){
               $jq(this).removeClass('currentNavline');
               if (num == $jq(this).attr('num2') && q == $jq(this).attr('num1')) {
                 $jq(this).addClass('currentNavline');
+                if($jq(this).parent().is(':hidden')) {
+                    $jq('.helpLi > ul').each(function() {
+                      if($jq(this).is(':visible')) {
+                        $jq(this).toggle();
+                        $jq(this).parent().find('h3').find('span').text(function(i,text) {
+                          return text === "-" ? "+" : "-";
+                        });
+                      } 
+                     });
+                  $jq(this).parent().toggle();
+                  $jq(this).parent().parent().find('h3').find('span').text(function(i,text) {
+                          return text === "-" ? "+" : "-";
+                  });
+
+                }
               }
             });
           });
@@ -273,7 +288,20 @@ var EMHelp=function(params){
               $jq(this).find('span').text(function(i,text) {
                 return text === "-" ? "+" : "-";
               });
-              $jq(this).parent().find('ul').toggle();
+              if ($jq(this).parent().find('ul').is(':visible')) {
+                $jq(this).parent().find('ul').toggle();
+              }
+              else {
+                $jq('.helpLi > ul').each(function() {
+                      if($jq(this).is(':visible')) {
+                        $jq(this).toggle();
+                        $jq(this).parent().find('h3').find('span').text(function(i,text) {
+                          return text === "-" ? "+" : "-";
+                        });
+                      } 
+                     });
+                 $jq(this).parent().find('ul').toggle();
+              }
           });
           $jqli.append($jqul2);
           $jqul.append($jqli);
