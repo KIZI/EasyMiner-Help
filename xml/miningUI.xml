@@ -47,12 +47,15 @@
 		<section>Association rule pattern</section>
 		<steps>
 			<step>
+				<id>cedent-1</id>
+				<id>cedent-2</id>
 				<title>Antecedent and Consequent</title>
 				<text>
 					Both antecedent and consequent are made of attributes (it can be one attribute or a combination of several attributes). Antecedent is a condition and consequent tells what applies if this condition is fulfilled. Simply said, if ‘antecedent’ then ‘consequent’. For example, if somebody bought products A and B then he bought product C as well.
 				</text>
 			</step>
 			<step>
+				<id>cedent-1</id>
 				<id>attributes</id>
 				<title>Antecedent creation</title>
 				<text>
@@ -60,6 +63,7 @@
 				</text>
 			</step>
 			<step>
+				<id>cedent-2</id>
 				<id>attributes</id>
 				<title>Consequent creation</title>
 				<text>
@@ -68,23 +72,24 @@
 			</step>
 			<step>
 				<title>Antecedent / Consequent editing</title>
-				<text>
-					Each attribute has a set of three icons below which appear after you hover over it. The first one is ‘Negation’ - it adds a ‘not’ before the attribute. The second is ‘Edit’ which allows you to edit the value merging. The last one is an icon for ‘Remove’ - it removes the attribute from antecedent or consequent.
-				</text>
+				<html>cedent_editing.html</html>
 			</step>
 			<step>
+				<id>add-im</id>
+				<id>im-supp</id>
+				<id>im-fui</id>
 				<title>Interest measures</title>
-				<text>
-					Interest measures affect how the rules are mined. There are two measures by default, ‘Confidence’ and ‘Support’. You can add two more, ‘Lift’ and ‘Rule length’ by clicking ‘Add interest measure’. You can edit each measure by clicking an edit icon next to it.
-				</text>
+				<html>interest_measures.html</html>
 			</step>
 			<step>
+				<id>im-fui</id>
 				<title>Interest measures - Confidence</title>
 				<text>
 					Confidence represents the ratio between rows that include all items in the consequent as well as the antecedent and rows that include all items in the antecedent (support). The higher the confidence, the harder it is to find a rule.
 				</text>
 			</step>
 			<step>
+				<id>im-supp</id>
 				<title>Interest measures - Support</title>
 				<text>
 					Support is in fact the number of rows which support the condition (Antecedent). It is expressed in percentage. Support is included with Confidence - if you choose high support and also high confidence it will be less likely to find some rule.
@@ -94,6 +99,16 @@
 				<title>Interest measures - Lift</title>
 				<text>
 					Lift helps to find a rule with better results (what we seek in the consequent) than the average. More precisely it says how much better is the model (rule) we found than the average. Example: Let’s say that we are looking for a group of people who smoke our brand of cigarettes. In average there is 4% of smokers who meet our needs. Maybe if we select only people who are 30 or more years old we find out that there is 12% among them who smokes our brand. This would mean that we found a group with the Lift of 3 (12/4).
+				</text>
+			</step>
+		</steps>
+		<section>Mining</section>
+		<steps>
+			<step>
+				<id>start-mining</id>
+				<title>Mine rules</title>
+				<text>
+					Before you can mine rules you have to set up your association rule pattern. To start mining just simply click ‘Mine rules’ button below. (If you can’t see the button, you did not set the association rule pattern properly).
 				</text>
 			</step>
 		</steps>

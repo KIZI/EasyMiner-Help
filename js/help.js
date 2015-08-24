@@ -33,6 +33,15 @@ var EMHelp=function(params){
   var q = 0;
   var num = 1;
   var that = this;
+  var xml;
+
+    $jq.ajax({
+      url: this.dataDirectoryUrl + this.dataFile,
+      dataType: "xml",
+      success : function(data) {
+                    xml = data;
+                }
+    });
 
   var highlight = function(id) {
    $jq("#" + id + "").addClass("helpHighlighted");
@@ -86,7 +95,7 @@ var EMHelp=function(params){
         $jqhelpBox.fadeOut("fast", function () {
           $jqhelpBox.remove();
         });
-        this.closeXml();
+        this.closeHelp();
       }.bind(this)
     });
 
@@ -96,7 +105,7 @@ var EMHelp=function(params){
       click: function () {
         num++;
         $jqhelpBoxDiv.fadeOut('fast',function() {
-          this.getXml(num);
+          this.getStep(num);
         }.bind(this));
         $jqhelpBoxDiv.fadeIn('fast');
       }.bind(this)
@@ -108,7 +117,7 @@ var EMHelp=function(params){
       click: function () {
         num--;
         $jqhelpBoxDiv.fadeOut('fast',function() {
-          this.getXml(num);
+          this.getStep(num);
         }.bind(this));
         $jqhelpBoxDiv.fadeIn('fast');
       }.bind(this)
@@ -136,7 +145,7 @@ var EMHelp=function(params){
         $jqhelpBox.fadeOut("fast", function () {
           $jqhelpBox.remove();
         });
-        this.closeXml();
+        this.closeHelp();
       }
     }.bind(this));
 
@@ -144,18 +153,14 @@ var EMHelp=function(params){
      * @private
      * @param i
      */
-    this.getXml = function (i) {
-      $jq.ajax({
-        url: this.dataDirectoryUrl + this.dataFile,
-        dataType: 'xml',
-        success: function (data) {
+    this.getStep = function (i) {
           $jq("#helpVideo").remove();
           $jqcontent.html("");
           $jqnextButton.removeAttr('disabled');
           $jqprevButton.removeAttr('disabled');
 
           //find language
-          $jq(data).find(that.lang).each(function() {
+          $jq(xml).find(that.lang).each(function() {
 
             if (i > $jq(this).find('steps').eq(q).children().size()) {
               q++;
@@ -185,9 +190,11 @@ var EMHelp=function(params){
                   highlight($jq(this).text());
                   id = $jq(this).text();
                 });
-                $jq("html, body").animate({scrollTop: $jq("#" + id + "").offset().top - 20}, 300);
-                $jqtitle.html($jq(data).find(that.lang).find('section').eq(q).text() 
-                + " step " + i + " / " + $jq(data).find(that.lang).find('steps').eq(q).children().size() 
+                if ($jq("#" + id).length != 0) {
+                  $jq("html, body").animate({scrollTop: $jq("#" + id + "").offset().top - 20}, 300);
+                }
+                $jqtitle.html($jq(xml).find(that.lang).find('section').eq(q).text() 
+                + " step " + i + " / " + $jq(xml).find(that.lang).find('steps').eq(q).children().size() 
                 + "<br />" + $jq(this).find('title').text());
                
                 $jqdescription.html($jq(this).find('text').text());
@@ -233,29 +240,15 @@ var EMHelp=function(params){
               }
             });
           });
-        },
-        error: function () {
-            $jq('.timeline').text('Failed to get feed');
-        }
-      });
     };
 
-    this.closeXml = function () {
-      $jq.ajax({
-        url: this.dataDirectoryUrl + this.dataFile,
-        dataType: 'xml',
-        success: function (data) {
-          $jq(data).find('step').each(function () {
+    this.closeHelp = function () {
+          $jq(xml).find('step').each(function () {
             $jq(this).find('id').each(function () {
               darken($jq(this).text());
             });
           });
           $jq("#helpNav").remove();
-        },
-        error: function () {
-          $jq('.timeline').text('Failed to get feed');
-        }
-      });
     };
 
     this.createNav = function () {
@@ -274,12 +267,8 @@ var EMHelp=function(params){
       $jqnav.append($jq("<h2>Navigation</h2>"));
       $jqnav.append($jqmin);
       $jq(document.body).append($jqnav);
-      $jq.ajax({
-      url: this.dataDirectoryUrl + this.dataFile,
-      dataType: 'xml',
-      success: function(data) {
         p = 0;  
-        $jq(data).find(that.lang).find('section').each(function() {
+        $jq(xml).find(that.lang).find('section').each(function() {
           var $jqul = $jq("<ul class='helpUl'/>");
           var $jqli = $jq("<li class='helpLi'/>");
           var $jqul2 = $jq("<ul/>");
@@ -306,7 +295,7 @@ var EMHelp=function(params){
           $jqli.append($jqul2);
           $jqul.append($jqli);
           $jqnavcon.append($jqul);
-          $jq(data).find(that.lang).find('steps').eq(p).each(function() {
+          $jq(xml).find(that.lang).find('steps').eq(p).each(function() {
             j = 1;
             $jq(this).find('step').each(function () {
               var $jqnavli = $jq('<li/>', {
@@ -317,7 +306,7 @@ var EMHelp=function(params){
                   q = $jq(this).attr('num1');
                   num = $jq(this).attr('num2');
                   $jqhelpBoxDiv.fadeOut('fast',function() {
-                      that.getXml(num);
+                      that.getStep(num);
                   });
                   $jqhelpBoxDiv.fadeIn('fast');
                 }
@@ -334,16 +323,11 @@ var EMHelp=function(params){
           p++;
         }); 
         $jqnav.append($jqnavcon);
-      },
-      error: function() {
-        $jq('.timeline').text('Failed to get feed');
-      }
-      });
     };
 
     //run
     this.createNav();
-    this.getXml(num);
+    this.getStep(num);
   }
 
 
