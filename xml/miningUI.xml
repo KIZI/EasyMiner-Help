@@ -107,9 +107,25 @@
 			<step>
 				<id>start-mining</id>
 				<title>Mine rules</title>
+				<html>mine_rules.html</html>
+			</step>
+			<step>
+				<title>Discovered rules</title>
 				<text>
-					Before you can mine rules you have to set up your association rule pattern. To start mining just simply click ‘Mine rules’ button below. (If you can’t see the button, you did not set the association rule pattern properly).
+					All discovered rules will be displayed right under your rule pattern. You can order rules by selected interest measure (confidence, support, lift).
 				</text>
+			</step>
+			<step>
+				<title>Rule selection</title>
+				<html>rule_selection.html</html>
+			</step>
+			<step>
+				<title>Work with rules</title>
+				<html>rule_work.html</html>
+			</step>
+			<step>
+				<title>Rule clipboard</title>
+				<html>rule_clipboard.html</html>
 			</step>
 		</steps>
 	</en>
