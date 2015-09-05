@@ -74,6 +74,9 @@ var EMHelp=function(params){
       .on('mousemove', handle_dragging);
   };
 
+  var callStep = function() {
+    alert('clicked2');
+  };
   /**
    * Show the given help file...
    */
@@ -123,7 +126,6 @@ var EMHelp=function(params){
       }.bind(this)
     });
 
-    $jqhelpBox.mousedown(draggable);
 
     $jqhelpBoxDiv.append($jqtitle);
     $jqhelpBoxDiv.append($jqdescription);
@@ -146,6 +148,20 @@ var EMHelp=function(params){
           $jqhelpBox.remove();
         });
         this.closeHelp();
+      }
+
+      if (e.keyCode == 37) {
+        if($jqprevButton.is(":not(:disabled)")) {
+          num--;
+          this.getStep(num);
+        } 
+      }
+
+      if (e.keyCode == 39) {
+        if($jqnextButton.is(":not(:disabled)")) {
+          num++;
+          this.getStep(num);
+        }
       }
     }.bind(this));
 
@@ -191,7 +207,7 @@ var EMHelp=function(params){
                   id = $jq(this).text();
                 });
                 if ($jq("#" + id).length != 0) {
-                  $jq("html, body").animate({scrollTop: $jq("#" + id + "").offset().top - 20}, 300);
+                    $jq("html, body").animate({scrollTop: $jq("#" + id + "").offset().top - 20}, 300);
                 }
                 $jqtitle.html($jq(xml).find(that.lang).find('section').eq(q).text() 
                 + " step " + i + " / " + $jq(xml).find(that.lang).find('steps').eq(q).children().size() 
@@ -222,9 +238,9 @@ var EMHelp=function(params){
               $jq(this).removeClass('currentNavline');
               if (num == $jq(this).attr('num2') && q == $jq(this).attr('num1')) {
                 $jq(this).addClass('currentNavline');
-                if($jq(this).parent().is(':hidden')) {
+                if($jq(this).parent().css("display") == "none") {
                     $jq('.helpLi > ul').each(function() {
-                      if($jq(this).is(':visible')) {
+                      if($jq(this).css("display") == "block") {
                         $jq(this).toggle();
                         $jq(this).parent().find('h3').find('span').text(function(i,text) {
                           return text === "-" ? "+" : "-";
@@ -242,6 +258,12 @@ var EMHelp=function(params){
           });
     };
 
+    this.clickStep = function(i,j) {
+      q = i;
+      num = j;
+      this.getStep(num);
+    }.bind(this);
+    
     this.closeHelp = function () {
           $jq(xml).find('step').each(function () {
             $jq(this).find('id').each(function () {
@@ -277,12 +299,12 @@ var EMHelp=function(params){
               $jq(this).find('span').text(function(i,text) {
                 return text === "-" ? "+" : "-";
               });
-              if ($jq(this).parent().find('ul').is(':visible')) {
+              if ($jq(this).parent().find('ul').css("display") == "block") {
                 $jq(this).parent().find('ul').toggle();
               }
               else {
                 $jq('.helpLi > ul').each(function() {
-                      if($jq(this).is(':visible')) {
+                      if($jq(this).css("display") == "block") {
                         $jq(this).toggle();
                         $jq(this).parent().find('h3').find('span').text(function(i,text) {
                           return text === "-" ? "+" : "-";

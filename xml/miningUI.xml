@@ -10,9 +10,7 @@
 			</step>
 			<step>
 				<title>Configuration</title>
-				<text>
-					You will be asked to choose a preprocessing method. There are up to four options depending on data format of particular data field. Those options are: Interval enumeration, Equidistant intervals, Nominal enumeration, Each value - one bin.
-				</text>
+				<html>attributes_config.html</html>
 			</step>
 			<step>
 				<title>Preprocessing - Interval enumeration</title>
