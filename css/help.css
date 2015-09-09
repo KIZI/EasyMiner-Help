@@ -40,7 +40,7 @@
   right: -15px;
   bottom: 0;
   height: 100%;
-  background-image: url("/easyminercenter/_help/img/right.svg");
+  background-image: url("/easyminercenter/_help/data/sources/img/right.svg");
   background-size: 10px 10px;
   background-repeat: no-repeat;
   background-position: center;
@@ -50,7 +50,7 @@
 }
 #helpBox #helpPrevButton {
   position: absolute;
-  background-image: url("/easyminercenter/_help/img/left.svg");
+  background-image: url("/easyminercenter/_help/data/sources/img/left.svg");
   background-size: 10px 10px;
   background-repeat: no-repeat;
   background-position: center;
@@ -75,10 +75,28 @@
   background-color: #f00;
   color: #fff;
 }
+#helpBox #helpHomeButton {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  width: 50px;
+  height: 23px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-image: url("/easyminercenter/_help/data/sources/img/home_black.png");
+  background-size: 15px 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#helpBox #helpHomeButton:hover {
+  background-color: #3a86ff;
+  background-image: url("/easyminercenter/_help/data/sources/img/home_white.png");
+}
 #helpBox #helpContent {
   position: relative;
   width: 100%;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 #helpBox #helpContent p {
   padding-left: 10px;
@@ -86,6 +104,12 @@
 }
 #helpBox #helpContent a:hover {
   cursor: pointer;
+}
+#helpBox #helpContent .helpWelcomeHref {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: block;
 }
 #helpBox #helpVideo {
   display: block;
@@ -340,6 +364,12 @@
   color: #fff;
 }
 .helpHighlighted {
+  position: relative;
+  z-index: 11;
+  opacity: 0.01;
+  color: #fff !important;
+}
+.helpColored {
   position: relative;
   z-index: 11;
   opacity: 0.01;

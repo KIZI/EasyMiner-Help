@@ -44,34 +44,18 @@ var EMHelp=function(params){
     });
 
   var highlight = function(id) {
-   $jq("#" + id + "").addClass("helpHighlighted");
-   $jq("#" + id + "").fadeTo("slow", 1);
+    if ($jq("#" + id + "").is(':not(h1,h2,h3,h4,a)')) {
+      $jq("#" + id + "").addClass("helpColored");
+    }
+    else {
+      $jq("#" + id + "").addClass("helpHighlighted");
+    }
+    $jq("#" + id + "").fadeTo("slow", 1);
   };
 
   var darken = function(id) {
    $jq("#"+id+"").removeClass("helpHighlighted");
-  };
-
-  var draggable = function(e) {
-    window.drag = {};
-    drag.pageX0 = e.pageX;
-    drag.pageY0 = e.pageY;
-    drag.elem = this;
-    drag.offset0 = $jq(this).offset();
-    var handle_dragging = function (e){
-      var left = drag.offset0.left + (e.pageX - drag.pageX0);
-      var top = drag.offset0.top + (e.pageY - drag.pageY0);
-      $jq(drag.elem)
-        .offset({top: top, left: left});
-    };
-    var handle_mouseup = function (e){
-      $jq('body')
-        .off('mousemove', handle_dragging)
-        .off('mouseup', handle_mouseup);
-    };
-    $jq('body')
-      .on('mouseup', handle_mouseup)
-      .on('mousemove', handle_dragging);
+   $jq("#"+id+"").removeClass("helpColored");
   };
 
   var callStep = function() {
@@ -91,6 +75,7 @@ var EMHelp=function(params){
     var $jqcloseButton = $jq('<button/>', {
       id: 'helpCloseButton',
       text: 'X',
+      title: 'Close',
       click: function () {
         $jqcover.fadeOut("fast", function () {
           $jqcover.remove();
@@ -99,6 +84,14 @@ var EMHelp=function(params){
           $jqhelpBox.remove();
         });
         this.closeHelp();
+      }.bind(this)
+    });
+
+    var $jqhomeButton = $jq('<button/>', {
+      id: 'helpHomeButton',
+      title: 'Home',
+      click: function() {
+        this.clickStep(0,1);
       }.bind(this)
     });
 
@@ -134,6 +127,7 @@ var EMHelp=function(params){
     $jqhelpBox.append($jqnextButton);
     $jqhelpBox.append($jqprevButton);
     $jqhelpBox.append($jqcloseButton);
+    $jqhelpBox.append($jqhomeButton);
 
     $jq(document.body).append($jqcover);
     $jq(document.body).append($jqhelpBox);
@@ -202,13 +196,17 @@ var EMHelp=function(params){
 
             $jq(this).find('steps').eq(q).each(function () {
               $jq(this).find('step:nth-child(' + i + ')').each(function () {
-                $jq(this).find('id').each(function () {
-                  highlight($jq(this).text());
-                  id = $jq(this).text();
-                });
-                if ($jq("#" + id).length != 0) {
-                    $jq("html, body").animate({scrollTop: $jq("#" + id + "").offset().top - 20}, 300);
+                var id =  $jq(this).find('id');
+                if (id.length != 0) {
+                  $jq(this).find('id').each(function () {
+                      highlight($jq(this).text());
+                      id2 = $jq(this).text();
+                  });
+                  if ($jq("#" + id2 + "").length != 0) {
+                    $jq("html, body").animate({scrollTop: $jq("#" + id2 + "").offset().top - 20}, 300);
+                  }
                 }
+                
                 $jqtitle.html($jq(xml).find(that.lang).find('section').eq(q).text() 
                 + " step " + i + " / " + $jq(xml).find(that.lang).find('steps').eq(q).children().size() 
                 + "<br />" + $jq(this).find('title').text());
@@ -216,7 +214,7 @@ var EMHelp=function(params){
                 $jqdescription.html($jq(this).find('text').text());
                 
                 $jq(this).find('html').each(function () {
-                  $jq("#helpContent").load("../_help/data/html/" + $jq(this).text(), function (response, status, xhr) {
+                  $jq("#helpContent").load("../_help/data/html/" + that.lang + "/" + $jq(this).text(), function (response, status, xhr) {
                     if (status == "error") {
                       var msg = "Sorry but there was an error: ";
                       alert(msg);
