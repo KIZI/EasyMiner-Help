@@ -61,6 +61,27 @@ var EMHelp=function(params){
   var callStep = function() {
     alert('clicked2');
   };
+
+  $jq(document).keyup(function (e) {
+  if ($jq("#helpCover").length != 0) {
+    if (e.keyCode == 27) {
+        this.closeHelp();
+    }
+    if (e.keyCode == 37) {
+      if($jq("#helpPrevButton").is(":not(:disabled)")) {
+        num--;
+        this.getStep(num);
+      } 
+    }
+    if (e.keyCode == 39) {
+      if($jq("#helpNextButton").is(":not(:disabled)")) {
+        num++;
+        this.getStep(num);
+      }
+    }
+  }
+  }.bind(this));
+  
   /**
    * Show the given help file...
    */
@@ -77,12 +98,6 @@ var EMHelp=function(params){
       text: 'X',
       title: 'Close',
       click: function () {
-        $jqcover.fadeOut("fast", function () {
-          $jqcover.remove();
-        });
-        $jqhelpBox.fadeOut("fast", function () {
-          $jqhelpBox.remove();
-        });
         this.closeHelp();
       }.bind(this)
     });
@@ -133,32 +148,11 @@ var EMHelp=function(params){
     $jq(document.body).append($jqhelpBox);
     $jqhelpBox.fadeToggle("slow");
 
-    $jq(document).keyup(function (e) {
-      if (e.keyCode == 27) {
-        $jqcover.fadeOut("fast", function () {
-          $jqcover.remove();
-        });
-        $jqhelpBox.fadeOut("fast", function () {
-          $jqhelpBox.remove();
-        });
-        this.closeHelp();
-      }
+    this.getVisibility = function() {
+      if ($jqcover.is(':visible')) {
 
-      if (e.keyCode == 37) {
-        if($jqprevButton.is(":not(:disabled)")) {
-          num--;
-          this.getStep(num);
-        } 
       }
-
-      if (e.keyCode == 39) {
-        if($jqnextButton.is(":not(:disabled)")) {
-          num++;
-          this.getStep(num);
-        }
-      }
-    }.bind(this));
-
+    };
     /**
      * @private
      * @param i
@@ -263,12 +257,18 @@ var EMHelp=function(params){
     }.bind(this);
     
     this.closeHelp = function () {
-          $jq(xml).find('step').each(function () {
-            $jq(this).find('id').each(function () {
-              darken($jq(this).text());
-            });
+      $jqcover.fadeOut("fast", function () {
+          $jqcover.remove();
+        });
+        $jqhelpBox.fadeOut("fast", function () {
+          $jqhelpBox.remove();
+        });
+        $jq(xml).find('step').each(function () {
+          $jq(this).find('id').each(function () {
+            darken($jq(this).text());
           });
-          $jq("#helpNav").remove();
+        });
+        $jq("#helpNav").remove();
     };
 
     this.createNav = function () {

@@ -135,6 +135,9 @@
 				<title>Mine rules</title>
 				<html>mine_rules.html</html>
 			</step>
+		</steps>
+		<section>Results</section>
+		<steps>
 			<step>
 				<title>Discovered rules</title>
 				<text>
@@ -153,6 +156,10 @@
 				<id>marked-rules-tabs > .marked-rules-tab-active</id> 
 				<title>Rule clipboard</title>
 				<html>rule_clipboard.html</html>
+			</step>
+			<step>
+				<title>Knowledge base</title>
+				<html>knowledge_base.html</html>
 			</step>
 		</steps>
 	</en>
