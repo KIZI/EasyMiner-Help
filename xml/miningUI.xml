@@ -10,6 +10,10 @@
 				<title>Controls</title>
 				<html>controls.html</html>
 			</step>
+			<step>
+				<title>About Mining UI</title>
+				<html>about_miningUI.html</html>
+			</step>
 		</steps>
 		<section>Attributes</section>
 		<steps>
@@ -56,6 +60,11 @@
 				<title>Editing/Hiding</title>
 				<id>attributes</id>
 				<html>attributes_editing.html</html>
+			</step>
+			<step>
+				<title>Histogram</title>
+				<id>attributes</id>
+				<html>attributes_histogram.html</html>
 			</step>
 		</steps>
 		<section>Association rule pattern</section>

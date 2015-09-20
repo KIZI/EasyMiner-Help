@@ -87,6 +87,7 @@ var EMHelp=function(params){
    */
   this.show = function() {
     var $jqcover = $jq("<div id='helpCover'/>");
+    var $jqcover2 = $jq("<div id='helpCover2'/>");
     var $jqhelpBox = $jq("<div id='helpBox'/>");
     var $jqhelpBoxDiv = $jq("<div id='helpBoxDiv'/>");
     var $jqtitle = $jq("<h1/>");
@@ -145,14 +146,10 @@ var EMHelp=function(params){
     $jqhelpBox.append($jqhomeButton);
 
     $jq(document.body).append($jqcover);
+    $jq(document.body).append($jqcover2);
     $jq(document.body).append($jqhelpBox);
     $jqhelpBox.fadeToggle("slow");
 
-    this.getVisibility = function() {
-      if ($jqcover.is(':visible')) {
-
-      }
-    };
     /**
      * @private
      * @param i
@@ -259,6 +256,7 @@ var EMHelp=function(params){
     this.closeHelp = function () {
       $jqcover.fadeOut("fast", function () {
           $jqcover.remove();
+          $jqcover2.remove();
         });
         $jqhelpBox.fadeOut("fast", function () {
           $jqhelpBox.remove();
