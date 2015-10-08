@@ -13,7 +13,7 @@
 #helpBox h1 {
   font-family: 'Droid Sans', 'Arial', 'sans-serif';
   font-size: 20px;
-  color: #3a86ff;
+  color: #126499;
   padding-top: 10px;
   padding-left: 10px;
 }
@@ -29,28 +29,25 @@
   transition: background-color 0.3s;
 }
 #helpBox .helpBtn:hover:enabled {
-  background-color: #3a86ff;
+  background-color: #126499;
   cursor: pointer;
 }
 #helpBox .helpBtn:active:enabled {
-  background-color: #d4d4d4;
+  background-color: #06e;
 }
 #helpBox #helpNextButton {
   position: absolute;
   right: -15px;
   bottom: 0;
   height: 100%;
-  background-image: url("/easyminercenter/_help/data/sources/img/right.svg");
+  background-image: url("../data/sources/img/right.svg");
   background-size: 10px 10px;
   background-repeat: no-repeat;
   background-position: center;
 }
-#helpBox #helpNextButton:hover:enabled {
-  animation: slideR 0.2s;
-}
 #helpBox #helpPrevButton {
   position: absolute;
-  background-image: url("/easyminercenter/_help/data/sources/img/left.svg");
+  background-image: url("../data/sources/img/left.svg");
   background-size: 10px 10px;
   background-repeat: no-repeat;
   background-position: center;
@@ -58,40 +55,28 @@
   left: -15px;
   height: 100%;
 }
-#helpBox #helpPrevButton:hover:enabled {
-  animation: slideL 0.2s;
-}
 #helpBox #helpCloseButton {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 50px;
-  height: 23px;
+  top: 5px;
+  right: 5px;
+  width: 22px;
+  height: 22px;
   border: none;
   outline: none;
   cursor: pointer;
-}
-#helpBox #helpCloseButton:hover {
-  background-color: #f00;
-  color: #fff;
+  background: transparent url("../data/sources/img/sprite-icons.png") -67px -116px no-repeat;
 }
 #helpBox #helpHomeButton {
   position: absolute;
-  top: 0;
-  right: 50px;
-  width: 50px;
-  height: 23px;
+  top: 5px;
+  right: 30px;
+  width: 22px;
+  height: 22px;
   border: none;
   outline: none;
   cursor: pointer;
-  background-image: url("/easyminercenter/_help/data/sources/img/home_black.png");
-  background-size: 15px 15px;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-#helpBox #helpHomeButton:hover {
-  background-color: #3a86ff;
-  background-image: url("/easyminercenter/_help/data/sources/img/home_white.png");
+  background: transparent url("../data/sources/img/home.png") no-repeat;
+  background-size: 21px 21px;
 }
 #helpBox #helpContent {
   position: relative;
@@ -116,142 +101,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-@-moz-keyframes slideR {
-  0% {
-    background-position: center;
-    animation-timing-function: ease-out;
-  }
-  50% {
-    background-position: 200%;
-    animation-timing-functionn: ease-in;
-  }
-  51% {
-    background-position: -100%;
-    animation-timing-function: ease-in;
-  }
-  100% {
-    background-position: center;
-  }
-}
-@-webkit-keyframes slideR {
-  0% {
-    background-position: center;
-    animation-timing-function: ease-out;
-  }
-  50% {
-    background-position: 200%;
-    animation-timing-functionn: ease-in;
-  }
-  51% {
-    background-position: -100%;
-    animation-timing-function: ease-in;
-  }
-  100% {
-    background-position: center;
-  }
-}
-@-o-keyframes slideR {
-  0% {
-    background-position: center;
-    animation-timing-function: ease-out;
-  }
-  50% {
-    background-position: 200%;
-    animation-timing-functionn: ease-in;
-  }
-  51% {
-    background-position: -100%;
-    animation-timing-function: ease-in;
-  }
-  100% {
-    background-position: center;
-  }
-}
-@keyframes slideR {
-  0% {
-    background-position: center;
-    animation-timing-function: ease-out;
-  }
-  50% {
-    background-position: 200%;
-    animation-timing-functionn: ease-in;
-  }
-  51% {
-    background-position: -100%;
-    animation-timing-function: ease-in;
-  }
-  100% {
-    background-position: center;
-  }
-}
-@-moz-keyframes slideL {
-  0% {
-    background-position: center;
-    animation-timing-function: ease-out;
-  }
-  50% {
-    background-position: -100%;
-    animation-timing-function: ease-in;
-  }
-  51% {
-    background-position: 200%;
-    animation-timing-function: ease-in;
-  }
-  100% {
-    background-position: center;
-  }
-}
-@-webkit-keyframes slideL {
-  0% {
-    background-position: center;
-    animation-timing-function: ease-out;
-  }
-  50% {
-    background-position: -100%;
-    animation-timing-function: ease-in;
-  }
-  51% {
-    background-position: 200%;
-    animation-timing-function: ease-in;
-  }
-  100% {
-    background-position: center;
-  }
-}
-@-o-keyframes slideL {
-  0% {
-    background-position: center;
-    animation-timing-function: ease-out;
-  }
-  50% {
-    background-position: -100%;
-    animation-timing-function: ease-in;
-  }
-  51% {
-    background-position: 200%;
-    animation-timing-function: ease-in;
-  }
-  100% {
-    background-position: center;
-  }
-}
-@keyframes slideL {
-  0% {
-    background-position: center;
-    animation-timing-function: ease-out;
-  }
-  50% {
-    background-position: -100%;
-    animation-timing-function: ease-in;
-  }
-  51% {
-    background-position: 200%;
-    animation-timing-function: ease-in;
-  }
-  100% {
-    background-position: center;
-  }
-}
 #helpCover {
   position: fixed;
   top: 0;
@@ -274,7 +123,8 @@
   width: 250px;
   min-height: 50px;
   background-color: #fff;
-  box-shadow: 0px 0px 10px 2px #000;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+  padding-top: 20px;
   z-index: 100;
 }
 #helpNav h2 {
@@ -285,19 +135,23 @@
   margin: 5px 20px 15px 20px;
   padding-bottom: 5px;
   border-bottom: 1px solid #314e64;
+  line-height: 20px;
 }
-#helpNav #helpMinButton {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 50px;
-  height: 23px;
-  border: none;
-  outline: none;
+#helpNav h2 .expanded {
+  background: url("../data/sources/img/sprite-icons.png") -20px -220px no-repeat;
 }
-#helpNav #helpMinButton:hover {
-  background-color: #3a86ff;
-  color: #fff;
+#helpNav h2 .collapsed {
+  background: url("../data/sources/img/sprite-icons.png") -19px -169px no-repeat;
+}
+#helpNav h2 #helpMinButton {
+  display: block;
+  width: 12px;
+  height: 12px;
+  float: right;
+  position: relative;
+  top: 5px;
+}
+#helpNav h2 #helpMinButton:hover {
   cursor: pointer;
 }
 #helpNav #helpNavContent {
@@ -320,13 +174,13 @@
   font-family: 'Droid Sans', 'Arial', 'sans-serif';
   padding-left: 20px;
   margin-bottom: 10px;
-  color: #3a86ff;
+  color: #126499;
   font-size: 18px;
   line-height: 25px;
 }
 #helpNav #helpNavContent .helpLi h3:hover {
   cursor: pointer;
-  box-shadow: inset 0 0 5px #3a86ff;
+  text-decoration: underline;
 }
 #helpNav #helpNavContent .helpLi h3 span {
   position: absolute;
@@ -348,7 +202,7 @@
   background-color: #d1d1d1;
 }
 #helpNav #helpNavContent .helpLi ul .helpNavline:hover {
-  background-color: #3a86ff;
+  background-color: #126499;
   color: #fff;
   cursor: pointer;
 }
@@ -365,7 +219,7 @@
   text-decoration: none;
 }
 #helpNav #helpNavContent .helpLi ul .currentNavline {
-  background-color: #3a86ff;
+  background-color: #126499;
 }
 #helpNav #helpNavContent .helpLi ul .currentNavline p {
   color: #fff;

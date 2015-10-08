@@ -1,6 +1,8 @@
 font-family = 'Droid Sans', 'Arial', 'sans-serif'
 nav-width = 250px
 helpcolor = white
+linkColor = #126499
+linkHoverColor = #06e
 
 #helpBox
   position fixed
@@ -16,7 +18,7 @@ helpcolor = white
   h1
     font-family font-family
     font-size 20px
-    color #3A86FF
+    color linkColor
     padding-top 10px
     padding-left 10px
   p
@@ -31,102 +33,56 @@ helpcolor = white
     transition background-color .3s
     &:hover
       &:enabled
-        background-color #3A86FF
+        background-color linkColor
         cursor pointer
     &:active
       &:enabled
-        background-color #D4D4D4
+        background-color linkHoverColor
 
   #helpNextButton
     position absolute
     right -15px
     bottom 0
     height 100%
-    background-image url(/easyminercenter/_help/data/sources/img/right.svg)
+    background-image url("../data/sources/img/right.svg")
     background-size 10px 10px
     background-repeat no-repeat
     background-position center
-    &:hover
-      &:enabled
-        animation slideR .2s
+
 
   #helpPrevButton
     position absolute
-    background-image url(/easyminercenter/_help/data/sources/img/left.svg)
+    background-image url("../data/sources/img/left.svg")
     background-size 10px 10px
     background-repeat no-repeat
     background-position center
     bottom 0
     left -15px
     height 100%
-    &:hover
-      &:enabled
-        animation slideL .2s
+
 
   #helpCloseButton
     position absolute
-    top 0
-    right 0
-    width 50px
-    height 23px
+    top 5px
+    right 5px
+    width 22px
+    height 22px
     border none
     outline none
     cursor pointer
-    &:hover
-      background-color red
-      color white
+    background transparent url("../data/sources/img/sprite-icons.png") -67px -116px no-repeat
 
   #helpHomeButton
     position absolute
-    top 0
-    right 50px
-    width 50px
-    height 23px
+    top 5px
+    right 30px
+    width 22px
+    height 22px
     border none
     outline none
     cursor pointer
-    background-image url(/easyminercenter/_help/data/sources/img/home_black.png)
-    background-size 15px 15px
-    background-repeat no-repeat
-    background-position center
-    &:hover
-      background-color #3A86FF
-      background-image url(/easyminercenter/_help/data/sources/img/home_white.png)
-      
-      
-  @keyframes slideR 
-      0% 
-        background-position center
-        animation-timing-function ease-out
-      
-      50% 
-        background-position 200%
-        animation-timing-functionn ease-in
-      
-      51% 
-        background-position -100%
-        animation-timing-function ease-in
-      
-      100% 
-        background-position center
-      
-
-
-  @keyframes slideL 
-      0% 
-        background-position center
-        animation-timing-function ease-out
-      
-      50% 
-        background-position -100%
-        animation-timing-function ease-in
-      
-      51% 
-        background-position 200%
-        animation-timing-function ease-in
-      
-      100% 
-        background-position center
+    background transparent url("../data/sources/img/home.png") no-repeat
+    background-size 21px 21px
         
    #helpContent
     position relative
@@ -170,7 +126,8 @@ helpcolor = white
   width nav-width
   min-height 50px
   background-color helpcolor
-  box-shadow 0px 0px 10px 2px black
+  box-shadow 0 0 10px 0 rgba(0,0,0,0.4)
+  padding-top 20px
   z-index 100
   h2
     color #314e64
@@ -180,19 +137,20 @@ helpcolor = white
     margin 5px 20px 15px 20px
     padding-bottom 5px
     border-bottom 1px solid #314e64
-
-  #helpMinButton
-    position absolute
-    right 0
-    top 0
-    width 50px
-    height 23px
-    border none
-    outline none
-    &:hover
-      background-color #3A86FF
-      color white
-      cursor pointer
+    line-height 20px
+    .expanded
+      background url("../data/sources/img/sprite-icons.png") -20px -220px no-repeat
+    .collapsed
+      background url("../data/sources/img/sprite-icons.png") -19px -169px no-repeat 
+    #helpMinButton
+      display block
+      width 12px
+      height 12px
+      float right
+      position relative
+      top 5px
+      &:hover
+        cursor pointer
     
   #helpNavContent
     width nav-width
@@ -213,12 +171,12 @@ helpcolor = white
         font-family font-family
         padding-left 20px
         margin-bottom 10px
-        color #3A86FF
+        color linkColor
         font-size 18px
         line-height 25px
         &:hover 
           cursor pointer
-          box-shadow inset 0 0 5px #3A86FF
+          text-decoration underline
         span
           position absolute
           right 0
@@ -236,7 +194,7 @@ helpcolor = white
           width nav-width
           background-color #D1D1D1
           &:hover 
-            background-color #3A86FF
+            background-color linkColor
             color white
             cursor pointer
             p
@@ -249,7 +207,7 @@ helpcolor = white
             &:hover 
               text-decoration none
         .currentNavline
-          background-color #3A86FF
+          background-color linkColor
           p
             color white
 
@@ -265,8 +223,8 @@ helpcolor = white
   opacity 0.01
   background-color #63FE44 !important
 
-  
-          
+
+         
         
          
    

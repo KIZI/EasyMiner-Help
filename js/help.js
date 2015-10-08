@@ -96,7 +96,6 @@ var EMHelp=function(params){
 
     var $jqcloseButton = $jq('<button/>', {
       id: 'helpCloseButton',
-      text: 'X',
       title: 'Close',
       click: function () {
         this.closeHelp();
@@ -272,19 +271,22 @@ var EMHelp=function(params){
     this.createNav = function () {
       var $jqnav = $jq("<div id='helpNav'/>");
       var $jqnavcon = $jq("<div id='helpNavContent'/>");
-      var $jqmin = $jq('<button/>', {
+      var $jqmin = $jq('<span/>', {
                 id: 'helpMinButton',
-                text: '-',
+                class:'expanded',
                 click: function () {
                   $jqnavcon.toggle();
-                  $jq(this).text(function(i,text) {
-                          return text === "-" ? "+" : "-";
-                      });
+                  if($jq(this).hasClass('expanded')) {
+                    $jq(this).addClass('collapsed').removeClass('expanded');
+                  }
+                  else {
+                    $jq(this).addClass('expanded').removeClass('collapsed');
+                  }
                 }
               });
       $jqnav.append($jq("<h2>Navigation</h2>"));
-      $jqnav.append($jqmin);
       $jq(document.body).append($jqnav);
+      $jq('#helpNav > h2').append($jqmin);
         p = 0;  
         $jq(xml).find(that.lang).find('section').each(function() {
           var $jqul = $jq("<ul class='helpUl'/>");
