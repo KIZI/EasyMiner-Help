@@ -1,201 +1,183 @@
-<help>
-	<en>
-		<section>Introduction</section>
-		<steps>
-			<step>
-				<title>Welcome</title>
-				<html>welcome.html</html>
-			</step>
-			<step>
-				<title>Controls</title>
-				<html>controls.html</html>
-			</step>
-			<step>
-				<title>About Mining UI</title>
-				<html>about_miningUI.html</html>
-			</step>
-		</steps>
-		<section>Attributes</section>
-		<steps>
-			<step>
-				<id>data-fields</id>
-				<id>attributes</id>
-				<title>Creating</title>
-				<html>1_1.html</html>
-			</step>
-			<step>
-				<id>attributes</id>
-				<title>Configuration</title>
-				<html>attributes_config.html</html>
-			</step>
-			<step>
-				<id>attributes</id>
-				<title>Preprocessing - Interval enumeration</title>
-				<text>
-					It is only possible with numeric formats. It distributes the data into intervals, which is good mainly for data with wide variability. That could be for example age, year, salary or any other data field with lots of different numbers. A wise choice of intervals can improve finding interesting rules.
-				</text>
-			</step>
-			<step>
-				<id>attributes</id>
-				<title>Preprocessing - Equidistant intervals</title>
-				<text>
-					Similar to interval enumeration except that the length of intervals is always the same. You can choose initial and final value and interval count. It will automatically create equidistant intervals according to the specified values.
-				</text>
-			</step>
-			<step>
-				<id>attributes</id>
-				<title>Preprocessing - Nominal enumeration</title>
-				<text>
-					Nominal enumeration is available for all formats. It allows you to create groups of values. This can be useful when there are many different values. Distributing them into several groups can help you to find more rules. Also make sure that the data in each group are somehow related (selecting random values ​​may result worse outcomes).
-				</text>
-			</step>
-			<step>
-				<id>attributes</id>
-				<title>Preprocessing - Each value</title>
-				<text>
-					As the name implies, each value is for itself. It is good for data fields where the data can take only few values such as ‘gender’ or ‘rating’. However you can use it for any other data field if it suits your needs.
-				</text>
-			</step>
-			<step>
-				<title>Editing/Hiding</title>
-				<id>attributes</id>
-				<html>attributes_editing.html</html>
-			</step>
-			<step>
-				<title>Histogram</title>
-				<id>attributes</id>
-				<html>attributes_histogram.html</html>
-			</step>
-		</steps>
-		<section>Association rule pattern</section>
-		<steps>
-			<step>
-				<id>cedent-1</id>
-				<id>cedent-2</id>
-				<id>succedent > h3</id>
-				<id>antecedent > h3</id>
-				<title>Antecedent and Consequent</title>
-				<text>
-					Both antecedent and consequent are made of attributes (it can be one attribute or a combination of several attributes). Antecedent is a condition and consequent tells what applies if this condition is fulfilled. Simply said, if ‘antecedent’ then ‘consequent’. For example, if somebody bought products A and B then he bought product C as well.
-				</text>
-			</step>
-			<step>
-				<id>cedent-1</id>
-				<id>antecedent > h3</id>
-				<id>attributes</id>
-				<title>Antecedent creation</title>
-				<text>
-					Drag one or more attributes to Antecedent or click a plus icon next to it (in this case you have to choose where to add it and confirm by clicking ‘Add’). You will be asked to set a value merging. You can change it afterwards by clicking an edit icon below added attribute. You can also click ‘Add all attributes’ which will automatically add all attributes to antecedent.
-				</text>
-			</step>
-			<step>
-				<id>cedent-2</id>
-				<id>succedent > h3</id>
-				<id>attributes</id>
-				<title>Consequent creation</title>
-				<text>
-					Drag one or more attributes to Consequent or click a plus icon next to it (in this case you have to choose where to add it and confirm by clicking ‘Add’). You will be asked to set a value merging. You can change it afterwards by clicking an edit icon below added attribute.
-				</text>
-			</step>
-			<step>
-				<id>cedent-1</id>
-				<id>cedent-2</id>
-				<id>antecedent > h3</id>
-				<id>succedent > h3</id>
-				<title>Antecedent / Consequent editing</title>
-				<html>cedent_editing.html</html>
-			</step>
-			<step>
-				<id>im-fui</id>
-				<id>im-supp</id>
-				<id>add-im</id>
-				<id>interest-measures > h3</id>
-				<title>Interest measures</title>
-				<html>interest_measures.html</html>
-			</step>
-			<step>
-				<id>im-fui</id>
-				<id>interest-measures > h3</id>
-				<title>Interest measures - Confidence</title>
-				<text>
-					Confidence represents the ratio between rows that include all items in the consequent as well as the antecedent and rows that include all items in the antecedent (support). The higher the confidence, the harder it is to find a rule.
-				</text>
-			</step>
-			<step>
-				<id>im-supp</id>
-				<id>interest-measures > h3</id>
-				<title>Interest measures - Support</title>
-				<text>
-					Support is in fact the number of rows which support the condition (Antecedent). It is expressed in percentage. Support is included with Confidence - if you choose high support and also high confidence it will be less likely to find some rule.
-				</text>
-			</step>
-			<step>
-				<id>interest-measures > h3</id>
-				<title>Interest measures - Lift</title>
-				<text>
-					Lift helps to find a rule with better results (what we seek in the consequent) than the average. More precisely it says how much better is the model (rule) we found than the average. Example: Let’s say that we are looking for a group of people who smoke our brand of cigarettes. In average there is 4% of smokers who meet our needs. Maybe if we select only people who are 30 or more years old we find out that there is 12% among them who smokes our brand. This would mean that we found a group with the Lift of 3 (12/4).
-				</text>
-			</step>
-		</steps>
-		<section>Mining</section>
-		<steps>
-			<step>
-				<id>start-mining</id>
-				<title>Mine rules</title>
-				<html>mine_rules.html</html>
-			</step>
-		</steps>
-		<section>Results</section>
-		<steps>
-			<step>
-				<title>Discovered rules</title>
-				<text>
-					All discovered rules will be displayed right under your rule pattern. You can order rules by selected interest measure (confidence, support, lift).
-				</text>
-			</step>
-			<step>
-				<title>Rule selection</title>
-				<html>rule_selection.html</html>
-			</step>
-			<step>
-				<title>Work with rules</title>
-				<html>rule_work.html</html>
-			</step>
-			<step>
-				<id>marked-rules-tabs > .marked-rules-tab-active</id> 
-				<title>Rule clipboard</title>
-				<html>rule_clipboard.html</html>
-			</step>
-			<step>
-				<title>Knowledge base</title>
-				<html>knowledge_base.html</html>
-			</step>
-		</steps>
-	</en>
+<help xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="help.xsd">
+	<content lang="en">
+		<section title="Introduction">
+			<steps>
+				<step>
+					<title>Welcome</title>
+					<html>welcome.html</html>
+				</step>
+				<step>
+					<title>Controls</title>
+					<html>controls.html</html>
+				</step>
+				<step>
+					<title>About Mining UI</title>
+					<html>about_miningUI.html</html>
+				</step>
+			</steps>
+		</section>
+		<section title="Attributes">
+			<steps>
+				<step>
+					<title>Creating</title>
+					<html>1_1.html</html>
+					<id>data-fields</id>
+					<id>attributes</id>
+				</step>
+				<step>
+					<title>Configuration</title>
+					<html>attributes_config.html</html>
+					<id>attributes</id>
+				</step>
+				<step>
+					<title>Preprocessing - Interval enumeration</title>
+					<text>
+						It is only possible with numeric formats. It distributes the data into intervals, which is good mainly for data with wide variability. That could be for example age, year, salary or any other data field with lots of different numbers. A wise choice of intervals can improve finding interesting rules.
+					</text>
+					<id>attributes</id>
+				</step>
+				<step>
+					<title>Preprocessing - Equidistant intervals</title>
+					<text>
+						Similar to interval enumeration except that the length of intervals is always the same. You can choose initial and final value and interval count. It will automatically create equidistant intervals according to the specified values.
+					</text>
+					<id>attributes</id>
+				</step>
+				<step>
+					<title>Preprocessing - Nominal enumeration</title>
+					<text>
+						Nominal enumeration is available for all formats. It allows you to create groups of values. This can be useful when there are many different values. Distributing them into several groups can help you to find more rules. Also make sure that the data in each group are somehow related (selecting random values ​​may result worse outcomes).
+					</text>
+					<id>attributes</id>
+				</step>
+				<step>
+					<title>Preprocessing - Each value</title>
+					<text>
+						As the name implies, each value is for itself. It is good for data fields where the data can take only few values such as ‘gender’ or ‘rating’. However you can use it for any other data field if it suits your needs.
+					</text>
+					<id>attributes</id>
+				</step>
+				<step>
+					<title>Editing/Hiding</title>
+					<html>attributes_editing.html</html>
+					<id>attributes</id>
+				</step>
+				<step>
+					<title>Histogram</title>
+					<html>attributes_histogram.html</html>
+					<id>attributes</id>
+				</step>
+			</steps>
+		</section>
+		<section title="Association rule pattern">
+			<steps>
+				<step>
+					<title>Antecedent and Consequent</title>
+					<text>
+						Both antecedent and consequent are made of attributes (it can be one attribute or a combination of several attributes). Antecedent is a condition and consequent tells what applies if this condition is fulfilled. Simply said, if ‘antecedent’ then ‘consequent’. For example, if somebody bought products A and B then he bought product C as well.
+					</text>
+					<id>cedent-1</id>
+					<id>cedent-2</id>
+					<id>succedent > h3</id>
+					<id>antecedent > h3</id>
+				</step>
+				<step>
+					<title>Antecedent creation</title>
+					<text>
+						Drag one or more attributes to Antecedent or click a plus icon next to it (in this case you have to choose where to add it and confirm by clicking ‘Add’). You will be asked to set a value merging. You can change it afterwards by clicking an edit icon below added attribute. You can also click ‘Add all attributes’ which will automatically add all attributes to antecedent.
+					</text>
+					<id>cedent-1</id>
+					<id>antecedent > h3</id>
+					<id>attributes</id>
+				</step>
+				<step>
+					<title>Consequent creation</title>
+					<text>
+						Drag one or more attributes to Consequent or click a plus icon next to it (in this case you have to choose where to add it and confirm by clicking ‘Add’). You will be asked to set a value merging. You can change it afterwards by clicking an edit icon below added attribute.
+					</text>
+					<id>cedent-2</id>
+					<id>succedent > h3</id>
+					<id>attributes</id>
+				</step>
+				<step>
+					<title>Antecedent / Consequent editing</title>
+					<html>cedent_editing.html</html>
+					<id>cedent-1</id>
+					<id>cedent-2</id>
+					<id>antecedent > h3</id>
+					<id>succedent > h3</id>
+				</step>
+				<step>
+					<title>Interest measures</title>
+					<html>interest_measures.html</html>
+					<id>im-fui</id>
+					<id>im-supp</id>
+					<id>add-im</id>
+					<id>interest-measures > h3</id>
+				</step>
+				<step>
+					<title>Interest measures - Confidence</title>
+					<text>
+						Confidence represents the ratio between rows that include all items in the consequent as well as the antecedent and rows that include all items in the antecedent (support). The higher the confidence, the harder it is to find a rule.
+					</text>
+					<id>im-fui</id>
+					<id>interest-measures > h3</id>
+				</step>
+				<step>
+					<title>Interest measures - Support</title>
+					<text>
+						Support is in fact the number of rows which support the condition (Antecedent). It is expressed in percentage. Support is included with Confidence - if you choose high support and also high confidence it will be less likely to find some rule.
+					</text>
+					<id>im-supp</id>
+					<id>interest-measures > h3</id>
+				</step>
+				<step>
+					<title>Interest measures - Lift</title>
+					<text>
+						Lift helps to find a rule with better results (what we seek in the consequent) than the average. More precisely it says how much better is the model (rule) we found than the average. Example: Let’s say that we are looking for a group of people who smoke our brand of cigarettes. In average there is 4% of smokers who meet our needs. Maybe if we select only people who are 30 or more years old we find out that there is 12% among them who smokes our brand. This would mean that we found a group with the Lift of 3 (12/4).
+					</text>
+					<id>interest-measures > h3</id>
+				</step>
+			</steps>
+		</section>
+		<section title="Mining">
+			<steps>
+				<step>
+					<title>Mine rules</title>
+					<html>mine_rules.html</html>
+					<id>start-mining</id>
+				</step>
+			</steps>
+		</section>
+			<section title="Results">
+			<steps>
+				<step>
+					<title>Discovered rules</title>
+					<text>
+						All discovered rules will be displayed right under your rule pattern. You can order rules by selected interest measure (confidence, support, lift).
+					</text>
+				</step>
+				<step>
+					<title>Rule selection</title>
+					<html>rule_selection.html</html>
+				</step>
+				<step>
+					<title>Work with rules</title>
+					<html>rule_work.html</html>
+				</step>
+				<step>
+					<title>Rule clipboard</title>
+					<html>rule_clipboard.html</html>
+					<id>marked-rules-tabs > .marked-rules-tab-active</id> 
+				</step>
+				<step>
+					<title>Knowledge base</title>
+					<html>knowledge_base.html</html>
+				</step>
+			</steps>
+		</section>
+	</content>
 	
-	<cz>
-		<section>Atributy</section>
-		<steps>
-			<step>
-				<id>data-fields</id>
-				<id>attributes</id>
-				<title>Vytváření</title>
-				<html>1_1.html</html>
-			</step>
-			<step>
-				<title>Konfigurace</title>
-				<text>
-					Budete vyzváni k výběru preprocessingové metody. Na výběr jsou až čtyři různé možnosti. Počet možností závisí na formátu dat příslušného datového pole. Možnosti jsou: Interval enumeration, Equidistant intervals, Nominal enumeration, Each value - one bin.
-				</text>
-			</step>
-		</steps>
-		<section>Mining</section>
-		<steps>
-			<step>
-				<id>knowledge-base-select</id>
-				<title>Nějaký název</title>
-				<text>Nějaký text</text>
-			</step>
-		</steps>
-	</cz>
+	
 </help>

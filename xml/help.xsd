@@ -1,20 +1,111 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
-         
-         <xs:element name="steps">
-               <xs:complexType>
-                     <xs:sequence>
-                           <xs:element name="step" maxOccurs="unbounded">
-                                 <xs:complexType>
-                                       <xs:sequence>
-                                             <xs:element name="id" type="xs:string"></xs:element>
-                                             <xs:element name="title" type="xs:string"></xs:element>
-                                             <xs:element name="text" type="xs:string"></xs:element>
-                                       </xs:sequence>
-                                 </xs:complexType>
-                           </xs:element>
-                     </xs:sequence>
-               </xs:complexType>
-         </xs:element>
-   </xs:schema>
- 
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:annotation>
+        <xs:appinfo>EasyMiner Help content</xs:appinfo>
+        <xs:documentation>
+            This Schema defines a content for EasyMiner.
+        </xs:documentation>
+    </xs:annotation>
+    
+    <xs:element name="help">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="content">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Content
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="section">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Section of navigation
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="steps">
+                                            <xs:annotation>
+                                                <xs:documentation>
+                                                    List of steps
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" name="step">
+                                                      <xs:annotation>
+                                                          <xs:documentation>
+                                                              One step
+                                                          </xs:documentation>
+                                                      </xs:annotation>
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="title">
+                                                      <xs:annotation>
+                                                          <xs:documentation>
+                                                              Title of a step
+                                                          </xs:documentation>
+                                                      </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element minOccurs="0" name="text">
+                                                      <xs:annotation>
+                                                          <xs:documentation>
+                                                              Any text string 
+                                                          </xs:documentation>
+                                                      </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element minOccurs="0" name="html">
+                                                      <xs:annotation>
+                                                          <xs:documentation>
+                                                              URL of any HTML document
+                                                          </xs:documentation>
+                                                      </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element minOccurs="0" name="video">
+                                                      <xs:annotation>
+                                                          <xs:documentation>
+                                                              URL of any video
+                                                          </xs:documentation>
+                                                      </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element maxOccurs="unbounded" minOccurs="0"
+                                                  name="id">
+                                                      <xs:annotation>
+                                                          <xs:documentation>
+                                                              ID of any HTML element
+                                                          </xs:documentation>
+                                                      </xs:annotation>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="title">
+                                        <xs:annotation>
+                                            <xs:documentation>
+                                                Title of a section
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="lang">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Language of the content
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute> 
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -58,10 +58,6 @@ var EMHelp=function(params){
    $jq("#"+id+"").removeClass("helpColored");
   };
 
-  var callStep = function() {
-    alert('clicked2');
-  };
-
   $jq(document).keyup(function (e) {
   if ($jq("#helpCover").length != 0) {
     if (e.keyCode == 27) {
@@ -160,7 +156,7 @@ var EMHelp=function(params){
           $jqprevButton.removeAttr('disabled');
 
           //find language
-          $jq(xml).find(that.lang).each(function() {
+          $jq(xml).find('content[lang="' + that.lang + '"]').each(function() {
 
             if (i > $jq(this).find('steps').eq(q).children().size()) {
               q++;
@@ -197,8 +193,8 @@ var EMHelp=function(params){
                   }
                 }
                 
-                $jqtitle.html($jq(xml).find(that.lang).find('section').eq(q).text() 
-                + " step " + i + " / " + $jq(xml).find(that.lang).find('steps').eq(q).children().size() 
+                $jqtitle.html($jq(xml).find('content[lang="' + that.lang + '"]').find('section').eq(q).attr('title') 
+                + " step " + i + " / " + $jq(xml).find('content[lang="' + that.lang + '"]').find('steps').eq(q).children().size() 
                 + "<br />" + $jq(this).find('title').text());
                
                 $jqdescription.html($jq(this).find('text').text());
@@ -288,11 +284,11 @@ var EMHelp=function(params){
       $jq(document.body).append($jqnav);
       $jq('#helpNav > h2').append($jqmin);
         p = 0;  
-        $jq(xml).find(that.lang).find('section').each(function() {
+        $jq(xml).find('content[lang="' + that.lang + '"]').find('section').each(function() {
           var $jqul = $jq("<ul class='helpUl'/>");
           var $jqli = $jq("<li class='helpLi'/>");
           var $jqul2 = $jq("<ul/>");
-          $jqli.html("<h3>" + $jq(this).text() + "<span>+</span></h3>");
+          $jqli.html("<h3>" + $jq(this).attr('title') + "<span>+</span></h3>");
           $jqli.find('h3').click(function() {
               $jq(this).find('span').text(function(i,text) {
                 return text === "-" ? "+" : "-";
@@ -315,7 +311,7 @@ var EMHelp=function(params){
           $jqli.append($jqul2);
           $jqul.append($jqli);
           $jqnavcon.append($jqul);
-          $jq(xml).find(that.lang).find('steps').eq(p).each(function() {
+          $jq(xml).find('content[lang="' + that.lang + '"]').find('steps').eq(p).each(function() {
             j = 1;
             $jq(this).find('step').each(function () {
               var $jqnavli = $jq('<li/>', {
