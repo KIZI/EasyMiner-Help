@@ -111,7 +111,7 @@
 				<step>
 					<title>Interest measures</title>
 					<html>interest_measures.html</html>
-					<id>im-fui</id>
+					<id>im-conf</id>
 					<id>im-supp</id>
 					<id>add-im</id>
 					<id>interest-measures > h3</id>
@@ -121,7 +121,7 @@
 					<text>
 						Confidence represents the ratio between rows that include all items in the consequent as well as the antecedent and rows that include all items in the antecedent (support). The higher the confidence, the harder it is to find a rule.
 					</text>
-					<id>im-fui</id>
+					<id>im-conf</id>
 					<id>interest-measures > h3</id>
 				</step>
 				<step>
